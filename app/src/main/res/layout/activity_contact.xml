@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ContactActivity">
+
+    <!-- Background ImageView -->
+    <ImageView
+        android:id="@+id/ContactBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitEnd"
+        android:src="@drawable/contactbg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- TextView -->
+    <TextView
+        android:id="@+id/TxtContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/give_us_your_mobile_number"
+        android:textSize="29sp"
+        android:fontFamily="@font/inter"
+        android:textColor="@color/black"
+        android:layout_marginTop="75sp"
+        android:layout_marginStart="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- SubTextView -->
+    <TextView
+        android:id="@+id/SubTxtContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter"
+        android:text="@string/enter_your_mobile_number_to_get_on_with_us"
+        app:layout_constraintTop_toBottomOf="@+id/TxtContact"
+        app:layout_constraintStart_toStartOf="parent"
+        app:autoSizeMinTextSize="18sp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeStepGranularity="2sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginStart="36sp" />
+
+    <!-- TextInputLayout -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ContactTxtLayout"
+        android:hint="@string/enter_mobile_number"
+        android:layout_width="0sp"
+        app:layout_constraintWidth_percent="0.8"
+        android:layout_height="60sp"
+        android:layout_marginTop="55sp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/inter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/SubTxtContact"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ContactEditTxt"
+            android:inputType="number"
+            android:maxLength="10"
+            android:fontFamily="@font/inter"
+            android:drawableStart="@drawable/number"
+            android:drawablePadding="5dp"
+            android:layout_width="match_parent"
+            android:padding="3sp"
+            android:maxLines="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Button -->
+    <Button
+        android:id="@+id/ContinueContact"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.4"
+        android:fontFamily="@font/inter"
+        android:text="@string/Continue"
+        android:fitsSystemWindows="true"
+        android:background="@drawable/rectanglesvgbtn"
+        android:backgroundTint="@color/purple_700"
+        android:paddingBottom="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ContactTxtLayout"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@id/guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
