@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/LoginBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitEnd"
+        android:src="@drawable/loginbg"
+        />
+    <TextView
+        android:id="@+id/TxtLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:fontFamily="@font/inter"
+        android:textSize="29sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="75sp"
+        android:layout_marginStart="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/SubTxtLogin"
+        android:fontFamily="@font/inter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_your_credentials_to_login"
+        app:layout_constraintTop_toBottomOf="@+id/TxtLogin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:autoSizeMinTextSize="18sp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeStepGranularity="2sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginStart="36sp"
+        />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/MobileNumberLayout"
+        android:hint="@string/enter_mobile_number"
+        android:layout_width="0sp"
+        app:layout_constraintWidth_percent="0.8"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/SubTxtLogin"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/MobileNumberEditTxt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:fontFamily="@font/inter"
+            android:inputType="number"
+            android:drawableStart="@drawable/number"
+            android:layout_gravity="center"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/EnterPasswordLayout"
+        android:hint="@string/enter_password"
+        android:layout_width="0sp"
+        app:passwordToggleEnabled="true"
+        app:layout_constraintWidth_percent="0.8"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/MobileNumberLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/EnterPasswordEditTxt"
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:maxLength="8"
+            android:fontFamily="@font/inter"
+            android:inputType="textPassword"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/ContinueLogin"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.4"
+        android:text="@string/Continue"
+        android:background="@drawable/rectanglesvgbtn"
+        android:backgroundTint="@color/purple_700"
+        android:fitsSystemWindows="true"
+        android:paddingBottom="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/EnterPasswordLayout"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

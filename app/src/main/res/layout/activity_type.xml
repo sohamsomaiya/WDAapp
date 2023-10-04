@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TypeActivity">
+
+    <ImageView
+        android:id="@+id/typebg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:src="@drawable/typebg" />
+
+    <TextView
+        android:id="@+id/purposetxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/what_is_the_purpose"
+        android:textSize="29sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="75sp"
+        android:layout_marginStart="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/subtextpurpose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/let_us_personalize_your_experience"
+        app:layout_constraintTop_toBottomOf="@+id/purposetxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:autoSizeMinTextSize="18sp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeStepGranularity="2sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginStart="36sp"
+        />
+
+    <Button
+        android:id="@+id/indrectangle"
+        android:layout_width="0sp"
+        app:layout_constraintWidth_percent="0.65"
+        android:layout_height="0sp"
+        app:layout_constraintHeight_percent="0.11"
+        android:text="Individual"
+        android:paddingBottom="10sp"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:background="@drawable/rectangle"
+        android:drawableRight="@drawable/person"
+        android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+        app:layout_constraintTop_toBottomOf="@id/subtextpurpose"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/orgrectangle"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <Button
+        android:id="@+id/orgrectangle"
+        android:layout_width="0sp"
+        app:layout_constraintWidth_percent="0.65"
+        android:layout_height="0sp"
+        app:layout_constraintHeight_percent="0.11"
+        android:text="Organization"
+        android:paddingBottom="10sp"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:background="@drawable/rectangle"
+        android:drawableRight="@drawable/organization"
+        android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+        app:layout_constraintTop_toBottomOf="@id/indrectangle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/continuetype"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+    <Button
+        android:id="@+id/continuetype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Continue"
+        android:backgroundTint="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/orgrectangle"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

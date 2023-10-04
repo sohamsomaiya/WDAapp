@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayoutName"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NameActivity">
+        <ImageView
+            android:id="@+id/TakeNameBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitEnd"
+            android:src="@drawable/businessgrow"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <TextView
+            android:id="@+id/TxtYourName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/what_is_your_name"
+            android:textSize="29sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="75sp"
+            android:layout_marginStart="30sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/SubTxtYourName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enter_your_name_to_get_a_better_experience"
+            app:layout_constraintTop_toBottomOf="@+id/TxtYourName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:autoSizeMinTextSize="18sp"
+            app:autoSizeMaxTextSize="100sp"
+            app:autoSizeStepGranularity="2sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginStart="36sp"
+            />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/YourNameTxtLayout"
+            android:hint="@string/enter_your_name_edit_text"
+            android:layout_width="0sp"
+            app:layout_constraintWidth_percent="0.8"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/SubTxtYourName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/YourNameEditTxt"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:maxLength="30"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/ContinueName"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.4"
+            android:text="@string/Continue"
+            android:background="@drawable/rectanglesvgbtn"
+            android:backgroundTint="@color/purple_700"
+            android:paddingBottom="10sp"
+            android:fitsSystemWindows="true"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/YourNameTxtLayout"
+            />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            />
+</androidx.constraintlayout.widget.ConstraintLayout>
