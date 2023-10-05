@@ -37,8 +37,10 @@ class HomeActivity : AppCompatActivity() {
                     drawer.closeDrawer(GravityCompat.START)
                 }
                 R.id.menu_logout -> {
-                    val preferences = getSharedPreferences("Credentials", 0)
-                    Toast.makeText(this, "Logged Out SuccessFully", Toast.LENGTH_SHORT).show()
+                    val preferences = getSharedPreferences("wda", 0)
+                    preferences.edit().remove("userId").apply()
+                    preferences.edit().remove("contact").apply()
+                    // Toast.makeText(this, "Logged Out SuccessFully", Toast.LENGTH_SHORT).show()
                     val intent= Intent(this,LoginActivity::class.java)
                     startActivity(intent)
                     finish()

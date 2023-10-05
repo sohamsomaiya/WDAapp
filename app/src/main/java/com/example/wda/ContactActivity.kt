@@ -43,7 +43,7 @@ class ContactActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         constraintLayout = findViewById(R.id.constraintLayout)
         ContactContinue=findViewById(R.id.ContinueContact)
-        guideline = findViewById(R.id.guideline)
+        guideline = findViewById(R.id.guidelineContact)
 
         constraintLayout.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
 

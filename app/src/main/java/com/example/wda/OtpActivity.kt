@@ -51,7 +51,7 @@ class OtpActivity : AppCompatActivity() {
         OtpText=findViewById(R.id.TxtOtp)
         SubTextOtp=findViewById(R.id.SubTxtOtp)
 
-        guidelineOtp = findViewById(R.id.guideline)
+        guidelineOtp = findViewById(R.id.guidelineOtp)
         ConstraintLayoutOtp = findViewById(R.id.ConstraintLayoutOtp)
 
         ConstraintLayoutOtp.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
@@ -62,7 +62,7 @@ class OtpActivity : AppCompatActivity() {
                 val keypadHeight = screenHeight - rect.bottom
 
                 if (keypadHeight > screenHeight * 0.15) {
-                    guidelineOtp.setGuidelinePercent(0.8f)
+                    guidelineOtp.setGuidelinePercent(0.7f)
                 } else {
                     guidelineOtp.setGuidelinePercent(1F)
                 }

@@ -42,7 +42,7 @@ class SetPasswordActivity : AppCompatActivity() {
         PasswordContinue=findViewById(R.id.ContinueSetPassword)
         PasswordText=findViewById(R.id.TxtSetPassword)
         SubTextPassword=findViewById(R.id.SubTxtSetPassword)
-        guidelineSetPassword = findViewById(R.id.guideline)
+        guidelineSetPassword = findViewById(R.id.guidelineSetPassword)
         ConstLayoutSetPassword = findViewById(R.id.ConstLayoutSetPassword)
 
         ConstLayoutSetPassword.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
@@ -53,7 +53,7 @@ class SetPasswordActivity : AppCompatActivity() {
                 val keypadHeight = screenHeight - rect.bottom
 
                 if (keypadHeight > screenHeight * 0.15) {
-                    guidelineSetPassword.setGuidelinePercent(0.8f)
+                    guidelineSetPassword.setGuidelinePercent(0.7f)
                 } else {
                     guidelineSetPassword.setGuidelinePercent(1F)
                 }

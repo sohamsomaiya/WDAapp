@@ -2,13 +2,17 @@ package com.example.wda
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.ViewTreeObserver
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.Guideline
 import androidx.core.widget.addTextChangedListener
 import com.example.wda.api.User
 import kotlinx.coroutines.CoroutineScope
@@ -23,6 +27,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var Continue : Button
     private lateinit var LoginText: TextView
     private lateinit var SubTextLogin : TextView
+    private lateinit var guidelineLogin : Guideline
+    private lateinit var ConstraintLayoutLogin : ConstraintLayout
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +44,24 @@ class LoginActivity : AppCompatActivity() {
         Continue=findViewById(R.id.ContinueLogin)
         LoginText=findViewById(R.id.TxtLogin)
         SubTextLogin=findViewById(R.id.SubTxtLogin)
+
+        guidelineLogin = findViewById(R.id.guidelineLogin)
+        ConstraintLayoutLogin = findViewById(R.id.ConstraintLayoutLogin)
+
+        ConstraintLayoutLogin.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                val rect = Rect()
+                ConstraintLayoutLogin.getWindowVisibleDisplayFrame(rect)
+                val screenHeight = ConstraintLayoutLogin.height
+                val keypadHeight = screenHeight - rect.bottom
+
+                if (keypadHeight > screenHeight * 0.15) {
+                    guidelineLogin.setGuidelinePercent(0.7f)
+                } else {
+                    guidelineLogin.setGuidelinePercent(1F)
+                }
+            }
+        })
 
         val sh=getSharedPreferences("wda", MODE_PRIVATE)
         val ContactNo = sh.getString("contact","")

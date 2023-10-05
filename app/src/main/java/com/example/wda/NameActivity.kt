@@ -45,7 +45,7 @@ class NameActivity : AppCompatActivity() {
         NameText=findViewById(R.id.TxtYourName)
         SubTextYourName=findViewById(R.id.SubTxtYourName)
 
-        guidelineName = findViewById(R.id.guideline)
+        guidelineName = findViewById(R.id.guidelineName)
         ConstraintLayoutName = findViewById(R.id.ConstraintLayoutName)
 
         ConstraintLayoutName.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
@@ -56,7 +56,7 @@ class NameActivity : AppCompatActivity() {
                 val keypadHeight = screenHeight - rect.bottom
 
                 if (keypadHeight > screenHeight * 0.15) {
-                    guidelineName.setGuidelinePercent(0.8f)
+                    guidelineName.setGuidelinePercent(0.7f)
                 } else {
                     guidelineName.setGuidelinePercent(1F)
                 }
