@@ -18,11 +18,13 @@
             android:orientation="vertical"
             >
             <!-- Bottom sheet contents. -->
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/textFont1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:clickable="true"
                 android:focusable="true"
+                android:checkable="true"
                 app:cardElevation="@dimen/cardview_default_elevation"
                 >
                 <TextView
@@ -33,42 +35,48 @@
                     android:fontFamily="@font/arial"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     />
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/textFont2"
                 android:layout_width="match_parent"
                 app:cardElevation="@dimen/cardview_default_elevation"
                 android:clickable="true"
                 android:focusable="true"
+                android:checkable="true"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:gravity="center"
                     android:text="Consolas"
                     android:fontFamily="@font/consolas"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     />
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/textFont3"
                 android:layout_width="match_parent"
                 app:cardElevation="@dimen/cardview_default_elevation"
                 android:clickable="true"
-                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:layout_height="50dp"
                 android:focusable="true">
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:gravity="center"
                     android:text="Gill Sans"
                     android:fontFamily="@font/gillsans"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     />
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/textFont4"
                 android:layout_width="match_parent"
                 app:cardElevation="@dimen/cardview_default_elevation"
                 android:clickable="true"
-                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:layout_height="50dp"
                 android:focusable="true">
                 <TextView
                     android:layout_width="match_parent"
@@ -78,12 +86,14 @@
                     android:fontFamily="@font/verdana"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     />
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/textFont5"
                 android:layout_width="match_parent"
                 app:cardElevation="@dimen/cardview_default_elevation"
                 android:clickable="true"
-                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:layout_height="50dp"
                 android:focusable="true">
                 <TextView
                     android:layout_width="match_parent"
@@ -93,7 +103,7 @@
                     android:fontFamily="@font/calist"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     />
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
             <Button
                 android:id="@+id/closeButton"
                 android:layout_width="match_parent"
