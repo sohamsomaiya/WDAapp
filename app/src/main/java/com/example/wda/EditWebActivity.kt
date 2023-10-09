@@ -169,10 +169,12 @@ class EditWebActivity : AppCompatActivity() {
     @SuppressLint("JavascriptInterface")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding =ActivityEditWebBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btn = findViewById(R.id.imagePathBtn)
+        btn = binding.imagePathBtn
 
-        web = findViewById(R.id.webView)
+        web = binding.webView
         printLayout=findViewById(R.id.layoutid)
         web.webViewClient = WebViewClient()
         web.webChromeClient = WebChromeClient()
@@ -221,8 +223,7 @@ class EditWebActivity : AppCompatActivity() {
 
         }
 
-        binding =ActivityEditWebBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
 
         // Button click listener to show the bottom sheet dialog
         binding.EditFontButton.setOnClickListener {
