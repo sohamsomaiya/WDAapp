@@ -1,8 +1,9 @@
 <!-- res/layout/bottom_sheet_layout.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_constraintCircleRadius="50dp"
     android:orientation="vertical">
 
     <!-- Content of your bottom sheet dialog -->
@@ -18,8 +19,13 @@
             android:orientation="vertical"
             >
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/colorPalet1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:clickable="true"
+                android:focusable="true"
+                >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:padding="10dp"
@@ -57,13 +63,19 @@
             </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/colorPalet2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:clickable="true"
+                android:focusable="true"
+                >
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:gravity="center"
-                    android:layout_height="wrap_content">
+                    >
                     <!-- Bottom sheet contents. -->
                     <ImageView
                         android:layout_width="78dp"
@@ -96,8 +108,13 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/colorPalet3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:clickable="true"
+                android:focusable="true"
+                >
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:padding="10dp"
@@ -135,8 +152,13 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/colorPalet4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:clickable="true"
+                android:focusable="true"
+                >
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:padding="10dp"
@@ -174,8 +196,12 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/colorPalet5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:checkable="true"
+                android:clickable="true"
+                android:focusable="true"
                 >
                 <LinearLayout
                     android:layout_width="match_parent"
