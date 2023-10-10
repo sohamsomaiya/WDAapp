@@ -350,35 +350,4 @@ class User : AppCompatActivity() {
             return null!!
         }
     }
-
-    fun addImages(businessName:String, imageID:String?, imagePath:String) : JSONObject{
-        val jsonLogin = JSONObject()
-        jsonLogin.put("businessName",businessName)
-        jsonLogin.put("imageID",imageID)
-        jsonLogin.put("imagePath",imagePath)
-
-        val jsonLoginResponse = jsonLogin.toString()
-
-        val url = URL("http://${ipaddress}/wda/business/addImages")
-        val httpconnection = (url.openConnection() as HttpURLConnection).apply {
-            doInput=true
-            doOutput=true
-            requestMethod="POST"
-            setRequestProperty("Content-Type","application/json")
-        }
-        try {
-            val writeLogindata= httpconnection.outputStream.bufferedWriter()
-            writeLogindata.write(jsonLoginResponse)
-            writeLogindata.flush()
-            if (httpconnection.responseCode==HttpURLConnection.HTTP_OK){
-                val jsonResponse = httpconnection.inputStream.bufferedReader()
-                val jsonResponseLogin=jsonResponse.readText()
-                return JSONObject(jsonResponseLogin)
-            }
-        }catch (ex : Exception){
-            Log.e("Login Error",ex.message!!)
-        }
-        return null!!
-
-    }
 }
