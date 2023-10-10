@@ -38,4 +38,8 @@
     <string name="name_not_entered">Name not entered</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_details_enter_your_details">Enter Your \nDetails !</string>
+    <string name="enter_date_of_incorporation">Enter Date Of Incorporation</string>
+    <string name="corporate_identification_number">Corporate Identification Number</string>
+    <string name="tax_deduction_account_number">TAX Deduction Account Number</string>
 </resources>

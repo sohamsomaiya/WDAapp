@@ -1,6 +1,6 @@
 package com.example.myapplication.model
 
-class Profile (
+class   Profile (
         var Name : String,
         var Type : String,
         var ContactNo : String,

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateWebActivity">
+    <ImageView
+        android:id="@+id/EnterDetailsBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="fitEnd"
+        android:src="@drawable/filldetails"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/EnterDetailsTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_details_enter_your_details"
+        android:textSize="29sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="75sp"
+        android:layout_marginStart="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/EnterDetailsSubTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Your Details To Get A \nPersonalize Experience."
+        app:layout_constraintTop_toBottomOf="@+id/EnterDetailsTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/gray"
+        app:autoSizeMinTextSize="18sp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeStepGranularity="2sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginStart="36sp"
+        />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/EnterDetailstxtLayout"
+        android:hint="@string/enter_your_name_edit_text"
+        android:layout_width="0sp"
+        app:layout_constraintWidth_percent="0.8"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/EnterDetailsSubTxt"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/EnterDetailsTxtInput"
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:maxLength="30"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/DOI"
+        android:hint="@string/enter_date_of_incorporation"
+        android:layout_width="0sp"
+        app:layout_constraintWidth_percent="0.8"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/EnterDetailstxtLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/DOIInput"
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:maxLength="30"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/COI"
+        android:hint="@string/corporate_identification_number"
+        android:layout_width="0sp"
+        app:layout_constraintWidth_percent="0.8"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/DOI"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/COIInput"
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:maxLength="30"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TAN"
+        android:hint="@string/tax_deduction_account_number"
+        android:layout_width="0sp"
+        app:layout_constraintWidth_percent="0.8"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/COI"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/TANInput"
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:maxLength="30"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/DomainNameLayout"
+        android:hint="Domain Name"
+        android:layout_width="0sp"
+        app:layout_constraintWidth_percent="0.8"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TAN"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/DomainNameTxt"
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:maxLength="30"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/EnterDetailsSubmitBtn"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.4"
+        android:text="@string/Continue"
+        android:background="@drawable/rectanglesvgbtn"
+        android:backgroundTint="@color/purple_700"
+        android:paddingBottom="10sp"
+        android:fitsSystemWindows="true"
+        app:layout_constraintBottom_toBottomOf="@+id/EnterDetailsGuideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/DomainNameLayout"
+        />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/EnterDetailsGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

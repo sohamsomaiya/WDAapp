@@ -25,6 +25,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:checkable="true"
+                app:strokeColor="@color/blue"
                 app:cardElevation="@dimen/cardview_default_elevation"
                 >
                 <TextView
@@ -40,6 +41,7 @@
                 android:id="@+id/textFont2"
                 android:layout_width="match_parent"
                 app:cardElevation="@dimen/cardview_default_elevation"
+                app:strokeColor="@color/blue"
                 android:clickable="true"
                 android:focusable="true"
                 android:checkable="true"
@@ -58,6 +60,7 @@
                 android:layout_width="match_parent"
                 app:cardElevation="@dimen/cardview_default_elevation"
                 android:clickable="true"
+                app:strokeColor="@color/blue"
                 android:checkable="true"
                 android:layout_height="50dp"
                 android:focusable="true">
@@ -75,6 +78,7 @@
                 android:layout_width="match_parent"
                 app:cardElevation="@dimen/cardview_default_elevation"
                 android:clickable="true"
+                app:strokeColor="@color/blue"
                 android:checkable="true"
                 android:layout_height="50dp"
                 android:focusable="true">
@@ -93,6 +97,7 @@
                 app:cardElevation="@dimen/cardview_default_elevation"
                 android:clickable="true"
                 android:checkable="true"
+                app:strokeColor="@color/blue"
                 android:layout_height="50dp"
                 android:focusable="true">
                 <TextView
