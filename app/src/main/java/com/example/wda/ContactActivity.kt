@@ -29,8 +29,8 @@ class ContactActivity : AppCompatActivity() {
     private lateinit var ContactContinue : Button
     private lateinit var MobileText: TextView
     private lateinit var SubTextMobile : TextView
-    private lateinit var guideline: Guideline
     private var type = "user"
+    private lateinit var guideline: Guideline
     private lateinit var constraintLayout: ConstraintLayout
 
     @SuppressLint("MissingInflatedId")
