@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LayoutEnterDetails"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreateWebActivity">
@@ -11,9 +12,7 @@
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="fitEnd"
-        android:src="@drawable/filldetails"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:src="@drawable/filldetails" />
 
     <TextView
         android:id="@+id/EnterDetailsTxt"
@@ -22,7 +21,7 @@
         android:text="@string/enter_details_enter_your_details"
         android:textSize="29sp"
         android:textColor="@color/black"
-        android:layout_marginTop="75sp"
+        android:layout_marginTop="45sp"
         android:layout_marginStart="30sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,16 +50,16 @@
         app:layout_constraintWidth_percent="0.8"
         android:layout_height="wrap_content"
         android:layout_marginTop="55sp"
+        app:layout_constraintBottom_toTopOf="@id/DOI"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EnterDetailsSubTxt"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/EnterDetailsTxtInput"
             android:layout_width="match_parent"
             android:maxLines="1"
-            android:maxLength="30"
+            android:inputType="text"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             />
@@ -73,15 +72,16 @@
         app:layout_constraintWidth_percent="0.8"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/COI"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EnterDetailstxtLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/DOIInput"
             android:layout_width="match_parent"
             android:maxLines="1"
-            android:maxLength="30"
+            android:maxLength="10"
+            android:inputType="date"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             />
@@ -95,14 +95,16 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/DOI"
+        app:layout_constraintTop_toBottomOf="@id/EnterDetailsSubTxt"
+        app:layout_constraintBottom_toTopOf="@id/EnterDetailsSubmitBtn"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/COIInput"
             android:layout_width="match_parent"
             android:maxLines="1"
-            android:maxLength="30"
+            android:maxLength="21"
+            android:inputType="date"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             />
@@ -123,7 +125,8 @@
             android:id="@+id/TANInput"
             android:layout_width="match_parent"
             android:maxLines="1"
-            android:maxLength="30"
+            android:maxLength="10"
+            android:inputType="number"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             />
@@ -138,13 +141,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/TAN"
+
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/DomainNameTxt"
             android:layout_width="match_parent"
             android:maxLines="1"
-            android:maxLength="30"
+            android:inputType="text"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             />
@@ -162,9 +166,9 @@
         android:paddingBottom="10sp"
         android:fitsSystemWindows="true"
         app:layout_constraintBottom_toBottomOf="@+id/EnterDetailsGuideline"
+        app:layout_constraintTop_toBottomOf="@id/DomainNameLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/DomainNameLayout"
         />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/EnterDetailsGuideline"
