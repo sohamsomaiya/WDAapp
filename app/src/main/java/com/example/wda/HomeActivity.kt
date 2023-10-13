@@ -8,16 +8,33 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.circularreveal.cardview.CircularRevealCardView
 import com.google.android.material.navigation.NavigationView
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var drawer: DrawerLayout
     private lateinit var drawerToggle: ActionBarDrawerToggle
     private lateinit var navigationView: NavigationView
+    private lateinit var CreateWebCard:CircularRevealCardView
+    private lateinit var EditWebCard:CircularRevealCardView
+    private lateinit var ViewSiteStatusCard:CircularRevealCardView
+    private lateinit var LanguageCard:CircularRevealCardView
+    private lateinit var QueryCard:CircularRevealCardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        CreateWebCard=findViewById(R.id.CreateWebCard)
+        EditWebCard=findViewById(R.id.EditWebCard)
+        ViewSiteStatusCard=findViewById(R.id.ViewSiteStatusCard)
+        LanguageCard=findViewById(R.id.LanguageCard)
+        QueryCard=findViewById(R.id.QueryCard)
+
+        CreateWebCard.setOnClickListener {
+            var intent = Intent(this@HomeActivity,TypeActivity::class.java)
+            startActivity(intent)
+        }
         navigationView = findViewById(R.id.NavView)
 //        val header = navigationView.getHeaderView(0)
         drawer = findViewById(R.id.navDrawer)
