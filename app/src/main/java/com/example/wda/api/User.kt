@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.model.Profile
+import com.example.wda.model.Templates
 import com.example.wda.model.Website
 import org.json.JSONObject
 import java.io.File
@@ -349,5 +350,41 @@ class User : AppCompatActivity() {
             }
             return null!!
         }
+
+        fun getAllTemplate() : Array<Templates>{
+
+            val TemplateList = arrayListOf<Templates>()
+
+            val url = URL("http://${ipaddress}/wda/admin/getAllTemplate")
+            val httpConnection = (url.openConnection() as HttpURLConnection).apply {
+                doInput = true
+                requestMethod = "GET"
+                setChunkedStreamingMode(0)
+            }
+            try {
+                if (httpConnection.responseCode == HttpURLConnection.HTTP_OK) {
+                    val TemplateReader = httpConnection.inputStream.bufferedReader()
+                    val responseTemplateString = JSONObject(TemplateReader.readText())
+                    val TemplateResponse = responseTemplateString.getJSONArray("templates")
+                    var i = 0
+                    while (i < TemplateResponse.length()) {
+                        val TempData = TemplateResponse.getJSONObject(i)
+                        val  TemplateData= Templates(
+                            TempData.getString("_id"),
+                            TempData.getString("templatePath")
+                        )
+                        TemplateList.add(TemplateData)
+                        i++
+                    }
+                    return TemplateList.toTypedArray()
+                }
+            }catch (ex : Exception){
+                Log.e("Template Error", ex.message!!)
+
+            }
+            return null!!
+        }
+
+
     }
 }

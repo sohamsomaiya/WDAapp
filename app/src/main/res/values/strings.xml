@@ -42,6 +42,7 @@
     <string name="enter_date_of_incorporation">Enter Date Of Incorporation</string>
     <string name="corporate_identification_number">Corporate Identification Number</string>
     <string name="tax_deduction_account_number">TAX Deduction Account Number</string>
+    <string name="enter_your_details_to_get_a_npersonalize_experience">Enter Your Details To Get A \nPersonalize Experience.</string>
 
     <string-array name="Query">
         <item>text 1</item>

@@ -12,6 +12,7 @@ import android.webkit.*
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wda.api.User
 import com.google.android.material.card.MaterialCardView
@@ -51,6 +52,22 @@ class TemplateSelectionActivity : AppCompatActivity() {
 //        Template1_4=findViewById(R.id.Template1_4)
 //        Template2_4=findViewById(R.id.Template2_4)
 
+        CoroutineScope(Dispatchers.IO).launch {
+            val message = User.getAllTemplate()
+            withContext(Dispatchers.Main){
+                if (message.isEmpty()){
+                    Toast.makeText(
+                        this@TemplateSelectionActivity,
+                        "No template foung",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                else{
+                    val intent=Intent(this@TemplateSelectionActivity,EditWebActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        }
         Template1.setOnClickListener {
             Template1.isChecked=true
             Template2.isChecked=false
