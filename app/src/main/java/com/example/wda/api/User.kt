@@ -371,7 +371,9 @@ class User : AppCompatActivity() {
                         val TempData = TemplateResponse.getJSONObject(i)
                         val  TemplateData= Templates(
                             TempData.getString("_id"),
-                            TempData.getString("templatePath")
+                            TempData.getString("templatePath"),
+                            "Template $i",
+                            null
                         )
                         TemplateList.add(TemplateData)
                         i++
