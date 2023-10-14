@@ -17,7 +17,7 @@ import java.net.URL
 class User : AppCompatActivity() {
 
     companion object{
-        val ipaddress="192.168.0.15:8000"
+        val ipaddress="192.168.196.253:8000"
 
         fun sendOtp(Name : String,Type : String,ContactNo : String): JSONObject {
             val jsonLogin=JSONObject()
@@ -367,16 +367,18 @@ class User : AppCompatActivity() {
                     val responseTemplateString = JSONObject(TemplateReader.readText())
                     val TemplateResponse = responseTemplateString.getJSONArray("templates")
                     var i = 0
+                    var j=1
                     while (i < TemplateResponse.length()) {
                         val TempData = TemplateResponse.getJSONObject(i)
                         val  TemplateData= Templates(
-                            i,
+                            j,
                             TempData.getString("templatePath"),
-                            "Template $i",
+                            "Template $j",
                             TempData.getString("imageName")
                         )
                         TemplateList.add(TemplateData)
                         i++
+                        j++
                     }
                     return TemplateList.toTypedArray()
                 }
@@ -389,7 +391,7 @@ class User : AppCompatActivity() {
 
         fun downloadWebsiteGif(context: Context,imageName: String){
 
-            val url = URL("http://${ipaddress}/wda/templatesImage/${imageName}")
+            val url = URL("http://${ipaddress}/wda/templatesImages/${imageName}.gif")
 
             val connection = (url.openConnection() as HttpURLConnection).apply {
                 doInput = true
@@ -399,21 +401,22 @@ class User : AppCompatActivity() {
             try {
                 val cacheDirPath = context.externalCacheDir!!.absolutePath
                 val imageDirPath = "${cacheDirPath}/WebsiteImage"
-                val imagepath = File(imageDirPath)
+                val imagepath = File(imageDirPath,"${imageName}.gif")
 
                 if (!imagepath.exists()) {
                     imagepath.mkdirs()
                 }
 
-                val imageSavePath =
-                    FileOutputStream("${imagepath.absolutePath}/${imageName}")
-
-                Log.i("ImagePAth", "${imagepath.absolutePath}/${imageName}")
+                val gifSavePath = FileOutputStream(imagepath)
 
                 connection.connect()
                 if (connection.responseCode == HttpURLConnection.HTTP_OK) {
-                    val bitmap = BitmapFactory.decodeStream(connection.inputStream)
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, imageSavePath)
+                    val buffer = ByteArray(4096)
+                    var bytesRead: Int
+                    val inputStream = connection.inputStream
+                    while (inputStream.read(buffer).also { bytesRead = it } != -1) {
+                        gifSavePath.write(buffer, 0, bytesRead)
+                    }
                 }
             } catch (ex: Exception) {
                 Log.e("ProductdownloadImage", ex.message!!)

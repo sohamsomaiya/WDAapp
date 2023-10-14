@@ -34,9 +34,10 @@ class TemplateSelectionActivity : AppCompatActivity() {
 //    private lateinit var Template2_3: MaterialCardView
 //    private lateinit var Template1_4: MaterialCardView
 //    private lateinit var Template2_4: MaterialCardView
-    private lateinit var SelectTemplateGridLayout: GridLayout
+//    private lateinit var SelectTemplateGridLayout: GridLayout
     private lateinit var TemplateSelecctSubmitBtn: Button
     private lateinit var SelectTemplateGridView: GridView
+    private lateinit var templateGif:Unit
 
 
     @SuppressLint("JavascriptInterface", "ClickableViewAccessibility")
@@ -46,25 +47,17 @@ class TemplateSelectionActivity : AppCompatActivity() {
         supportActionBar?.title = "Select Templates"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-//        Template1 = findViewById(R.id.Template1)
-//        Template2=findViewById(R.id.Template2)
-//        Template1_2=findViewById(R.id.Template1_2)
-//        Template2_2=findViewById(R.id.Template2_2)
-//        Template1_3=findViewById(R.id.Template1_3)
-//        Template2_3=findViewById(R.id.Template2_3)
-//        Template1_4=findViewById(R.id.Template1_4)
-//        Template2_4=findViewById(R.id.Template2_4)
-        SelectTemplateGridLayout=findViewById(R.id.SelectTemplateGridLayout)
         TemplateSelecctSubmitBtn=findViewById(R.id.TemplateSelecctSubmitBtn)
         SelectTemplateGridView=findViewById(R.id.SelectTemplateGridView)
 
         CoroutineScope(Dispatchers.IO).launch {
             var message = User.getAllTemplate()
 
-            var templateGif:Unit
+
             for (imageName in message){
                 templateGif=User.downloadWebsiteGif(this@TemplateSelectionActivity,imageName.TemplateImage)
             }
+
             withContext(Dispatchers.Main) {
                 if (message.isEmpty()) {
                     Toast.makeText(
@@ -73,157 +66,11 @@ class TemplateSelectionActivity : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
+                    SelectTemplateGridView.adapter=SelectTemplateAdapter(this@TemplateSelectionActivity,message,TemplateSelecctSubmitBtn)
 
-                    SelectTemplateGridView.adapter=SelectTemplateAdapter(this@TemplateSelectionActivity,message,templateGif,TemplateSelecctSubmitBtn)
                 }
             }
         }
-//        Template1.setOnClickListener {
-//            Template1.isChecked = true
-//            Template2.isChecked = false
-//            Template1_2.isChecked = false
-//            Template2_2.isChecked = false
-//            Template1_3.isChecked = false
-//            Template2_3.isChecked = false
-//            Template1_4.isChecked = false
-//            Template2_4.isChecked = false
-//            Template1.strokeWidth = 2
-//            Template2.strokeWidth = 0
-//            Template1_2.strokeWidth = 0
-//            Template2_2.strokeWidth = 0
-//            Template1_3.strokeWidth = 0
-//            Template2_3.strokeWidth = 0
-//            Template1_4.strokeWidth = 0
-//            Template2_4.strokeWidth = 0
-//        }
-//        Template2.setOnClickListener {
-//            Template1.isChecked=false
-//            Template2.isChecked=true
-//            Template1_2.isChecked=false
-//            Template2_2.isChecked=false
-//            Template1_3.isChecked=false
-//            Template2_3.isChecked=false
-//            Template1_4.isChecked=false
-//            Template2_4.isChecked=false
-//            Template1.strokeWidth=0
-//            Template2.strokeWidth=2
-//            Template1_2.strokeWidth=0
-//            Template2_2.strokeWidth=0
-//            Template1_3.strokeWidth=0
-//            Template2_3.strokeWidth=0
-//            Template1_4.strokeWidth=0
-//            Template2_4.strokeWidth=0
-//
-//        }
-//        Template1_2.setOnClickListener {
-//            Template1.isChecked=false
-//            Template2.isChecked=false
-//            Template1_2.isChecked=true
-//            Template2_2.isChecked=false
-//            Template1_3.isChecked=false
-//            Template2_3.isChecked=false
-//            Template1_4.isChecked=false
-//            Template2_4.isChecked=false
-//            Template1.strokeWidth=0
-//            Template2.strokeWidth=0
-//            Template1_2.strokeWidth=2
-//            Template2_2.strokeWidth=0
-//            Template1_3.strokeWidth=0
-//            Template2_3.strokeWidth=0
-//            Template1_4.strokeWidth=0
-//            Template2_4.strokeWidth=0
-//        }
-//        Template2_2.setOnClickListener {
-//            Template1.isChecked=false
-//            Template2.isChecked=false
-//            Template1_2.isChecked=false
-//            Template2_2.isChecked=true
-//            Template1_3.isChecked=false
-//            Template2_3.isChecked=false
-//            Template1_4.isChecked=false
-//            Template2_4.isChecked=false
-//            Template1.strokeWidth=0
-//            Template2.strokeWidth=0
-//            Template1_2.strokeWidth=0
-//            Template2_2.strokeWidth=2
-//            Template1_3.strokeWidth=0
-//            Template2_3.strokeWidth=0
-//            Template1_4.strokeWidth=0
-//            Template2_4.strokeWidth=0
-//        }
-//        Template1_3.setOnClickListener {
-//            Template1.isChecked=false
-//            Template2.isChecked=false
-//            Template1_2.isChecked=false
-//            Template2_2.isChecked=false
-//            Template1_3.isChecked=true
-//            Template2_3.isChecked=false
-//            Template1_4.isChecked=false
-//            Template2_4.isChecked=false
-//            Template1.strokeWidth=0
-//            Template2.strokeWidth=0
-//            Template1_2.strokeWidth=0
-//            Template2_2.strokeWidth=0
-//            Template1_3.strokeWidth=2
-//            Template2_3.strokeWidth=0
-//            Template1_4.strokeWidth=0
-//            Template2_4.strokeWidth=0
-//        }
-//        Template2_3.setOnClickListener {
-//            Template1.isChecked=false
-//            Template2.isChecked=false
-//            Template1_2.isChecked=false
-//            Template2_2.isChecked=false
-//            Template1_3.isChecked=false
-//            Template2_3.isChecked=true
-//            Template1_4.isChecked=false
-//            Template2_4.isChecked=false
-//            Template1.strokeWidth=0
-//            Template2.strokeWidth=0
-//            Template1_2.strokeWidth=0
-//            Template2_2.strokeWidth=0
-//            Template1_3.strokeWidth=0
-//            Template2_3.strokeWidth=2
-//            Template1_4.strokeWidth=0
-//            Template2_4.strokeWidth=0
-//        }
-//        Template1_4.setOnClickListener {
-//            Template1.isChecked=false
-//            Template2.isChecked=false
-//            Template1_2.isChecked=false
-//            Template2_2.isChecked=false
-//            Template1_3.isChecked=false
-//            Template2_3.isChecked=false
-//            Template1_4.isChecked=true
-//            Template2_4.isChecked=false
-//            Template1.strokeWidth=0
-//            Template2.strokeWidth=0
-//            Template1_2.strokeWidth=0
-//            Template2_2.strokeWidth=0
-//            Template1_3.strokeWidth=0
-//            Template2_3.strokeWidth=0
-//            Template1_4.strokeWidth=2
-//            Template2_4.strokeWidth=0
-//        }
-//        Template2_4.setOnClickListener {
-//            Template1.isChecked=false
-//            Template2.isChecked=false
-//            Template1_2.isChecked=false
-//            Template2_2.isChecked=false
-//            Template1_3.isChecked=false
-//            Template2_3.isChecked=false
-//            Template1_4.isChecked=false
-//            Template2_4.isChecked=true
-//            Template1.strokeWidth=0
-//            Template2.strokeWidth=0
-//            Template1_2.strokeWidth=0
-//            Template2_2.strokeWidth=0
-//            Template1_3.strokeWidth=0
-//            Template2_3.strokeWidth=0
-//            Template1_4.strokeWidth=0
-//            Template2_4.strokeWidth=2
-//        }
-
     }
 }
 
