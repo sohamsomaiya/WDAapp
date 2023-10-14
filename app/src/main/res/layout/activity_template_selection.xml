@@ -12,30 +12,24 @@
         android:adjustViewBounds="true"
         android:scaleType="centerInside"
             android:src="@drawable/templatebg" />
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="10dp"
-        android:contentDescription="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintTop_toTopOf="parent"
-        >
-        <GridLayout
-            android:id="@+id/SelectTemplateGridLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:columnCount="2"
-            >
+<!--        <GridLayout-->
+<!--            android:id="@+id/SelectTemplateGridLayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:columnCount="2"-->
+<!--            >-->
             <GridView
                 android:id="@+id/SelectTemplateGridView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                android:numColumns="2"
                 >
 
             </GridView>
-        </GridLayout>
-    </ScrollView>
+<!--        </GridLayout>-->
     <Button
         android:id="@+id/TemplateSelecctSubmitBtn"
         android:layout_width="0sp"
