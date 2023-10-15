@@ -209,10 +209,9 @@ class ModalBottomSheet2 : BottomSheetDialogFragment() {
 class EditWebActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditWebBinding
     private lateinit var web:WebView
-    private lateinit var printLayout: TextView
-    private lateinit var imgView:ImageView
     private var imageUri:Uri?=null
-    private lateinit var btn:Button
+    private lateinit var SaveBtn:Button
+    private lateinit var CancelBtn:Button
     companion object{
         private var touchedImageId: String? = null
         private const val FILE_PICKER_REQUEST_CODE = 1
@@ -223,10 +222,10 @@ class EditWebActivity : AppCompatActivity() {
         binding =ActivityEditWebBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        btn = binding.imagePathBtn
+        SaveBtn = binding.EditWebSaveBtn
+        CancelBtn = binding.EditWebCancelBtn
 
         web = binding.webView
-        printLayout=binding.layoutid
         web.webViewClient = WebViewClient()
         web.webChromeClient = WebChromeClient()
         web.settings.javaScriptEnabled = true
@@ -246,7 +245,6 @@ class EditWebActivity : AppCompatActivity() {
 //        web.loadDataWithBaseURL(null, getHtmlContent(), "text/html", "UTF-8", null)
         val sp = getSharedPreferences("wda", MODE_PRIVATE)
         val Tpath = sp.getString("TemplatePath","")
-
         val baseUrl = "http://${ipaddress}$Tpath"
         val uri = Uri.parse(baseUrl)
             .buildUpon()
@@ -260,7 +258,7 @@ class EditWebActivity : AppCompatActivity() {
         web.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                btn.isEnabled = true
+                SaveBtn.isEnabled = true
             }
         }
         web.webViewClient = object : WebViewClient() {
@@ -269,7 +267,7 @@ class EditWebActivity : AppCompatActivity() {
                 Log.e("WebView Error", "Error Code: $errorCode, Description: $description")
             }
         }
-        btn.setOnClickListener {
+        SaveBtn.setOnClickListener {
             web.evaluateJavascript(
                 "(function() { return document.documentElement.outerHTML; })();"
             ) { content ->

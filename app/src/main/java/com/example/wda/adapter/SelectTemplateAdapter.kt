@@ -25,6 +25,7 @@ import pl.droidsonroids.gif.GifImageView
 class SelectTemplateAdapter(private val activity: Activity, private val template : Array<Templates>, private val submitTempBtn : Button):
     ArrayAdapter<Templates>(activity,
     R.layout.activity_template_selection,template){
+    private var selectedPosition = -1
     @SuppressLint("SetTextI18n", "ResourceAsColor")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var view: View? = convertView
@@ -53,18 +54,24 @@ class SelectTemplateAdapter(private val activity: Activity, private val template
             .load(gifUri)
             .into(viewHolder.SelectTemplateImage)
 
-        var TemplateArray = ArrayList<Int>()
+            viewHolder.TemplateCard.isChecked = (position == selectedPosition)
         viewHolder.TemplateCard.setOnClickListener {
-            TemplateArray.add(template[position].Id)
-                viewHolder.TemplateCard.isChecked=true
-//                viewHolder.TemplateCard.strokeWidth=2
-//                viewHolder.TemplateCard.strokeColor= blue
-            if (TemplateArray.size > 1){
-                viewHolder.TempCard= view?.findViewById(TemplateArray[0])!!
-//                Log.i("array", TemplateArray.toString())
-                TemplateArray.removeAt(0)
-                viewHolder.TempCard.isChecked=false
+            if (position != selectedPosition) {
+                if (selectedPosition != -1) {
+                    // Deselect the previously selected card
+                    val previousSelectedView = parent.getChildAt(selectedPosition)
+                    if (previousSelectedView != null) {
+                        val previousSelectedViewHolder = previousSelectedView.tag as ViewHolder
+                        previousSelectedViewHolder.TemplateCard.isChecked = false
+                        previousSelectedViewHolder.TemplateCard.strokeWidth = 0
+
+                    }
+                }
+                // Update the selected position to the current card
+                selectedPosition = position
             }
+            viewHolder.TemplateCard.isChecked=true
+            viewHolder.TemplateCard.strokeWidth=2
             tempPath = template[position].TemplatePath
             val templatePathsp =activity.getSharedPreferences("wda", Context.MODE_PRIVATE)
             val editor = templatePathsp.edit()

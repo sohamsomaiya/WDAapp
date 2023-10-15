@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.model.Profile
 import com.example.wda.model.Templates
+import com.example.wda.model.UserWebsite
 import com.example.wda.model.Website
 import org.json.JSONObject
 import java.io.File
@@ -17,7 +18,7 @@ import java.net.URL
 class User : AppCompatActivity() {
 
     companion object{
-        val ipaddress="192.168.196.253:8000"
+        val ipaddress="192.168.36.253:8000"
 
         fun sendOtp(Name : String,Type : String,ContactNo : String): JSONObject {
             val jsonLogin=JSONObject()
@@ -312,9 +313,9 @@ class User : AppCompatActivity() {
 
         }
 
-        fun getWebsiteDetails(userId : String) : Array<Website>{
+        fun getWebsiteDetails(userId : String) : Array<UserWebsite>{
 
-            val WebsiteArrayList = arrayListOf<Website>()
+            val WebsiteArrayList = arrayListOf<UserWebsite>()
 
             val url = URL("http://${ipaddress}/wda/user/getUserWebsites/${userId}")
             val httpConnection = (url.openConnection() as HttpURLConnection).apply {
@@ -330,13 +331,13 @@ class User : AppCompatActivity() {
                     var i = 0
                     while (i < responseWebsite.length()) {
                         val websiteData = responseWebsite.getJSONObject(i)
-                        val Websites = Website(
+                        val Websites = UserWebsite(
                             websiteData.getString("_id"),
                             websiteData.getString("websiteName"),
                             websiteData.getString("websiteType"),
-                            websiteData.getString("dateOfIncorporation"),
-                            websiteData.getString("corporateIdentificationNo"),
-                            websiteData.getString("taxDeductionAccNo"),
+                            websiteData.optString("dateOfIncorporation"),
+                            websiteData.optString("corporateIdentificationNo"),
+                            websiteData.optString("taxDeductionAccNo"),
                             websiteData.getString("domainName")
                         )
                         WebsiteArrayList.add(Websites)

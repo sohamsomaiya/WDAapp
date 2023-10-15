@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.wda.R
 import com.example.wda.model.UserWebsite
+import com.example.wda.model.Website
 
 class DropdownWebNameAdapter (private val activity: Activity, private val objects: Array<UserWebsite>) :
     ArrayAdapter<UserWebsite>(activity, R.layout.dropdowngrid
@@ -27,8 +28,8 @@ class DropdownWebNameAdapter (private val activity: Activity, private val object
         } else
             viewHolder = view.tag as ViewHolder
 
-        viewHolder.hiddenText.text = objects[position].WebsiteId.toString()
-        viewHolder.WebsiteName.text = objects[position].WebsiteName.toString()
+        viewHolder.hiddenText.text = objects[position].WebsiteId
+        viewHolder.WebsiteName.text = objects[position].WebsiteName
 
 
         return view!!

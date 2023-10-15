@@ -35,6 +35,10 @@ class HomeActivity : AppCompatActivity() {
             var intent = Intent(this@HomeActivity,TypeActivity::class.java)
             startActivity(intent)
         }
+        QueryCard.setOnClickListener {
+            var intent = Intent(this@HomeActivity,QueryActivity::class.java)
+            startActivity(intent)
+        }
         navigationView = findViewById(R.id.NavView)
 //        val header = navigationView.getHeaderView(0)
         drawer = findViewById(R.id.navDrawer)
