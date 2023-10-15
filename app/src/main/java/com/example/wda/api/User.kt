@@ -6,9 +6,7 @@ import android.graphics.BitmapFactory
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.model.Profile
-import com.example.wda.model.Templates
-import com.example.wda.model.UserWebsite
-import com.example.wda.model.Website
+import com.example.wda.model.*
 import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
@@ -18,7 +16,7 @@ import java.net.URL
 class User : AppCompatActivity() {
 
     companion object{
-        val ipaddress="192.168.36.253:8000"
+        val ipaddress="192.168.0.15:8000"
 
         fun sendOtp(Name : String,Type : String,ContactNo : String): JSONObject {
             val jsonLogin=JSONObject()
@@ -390,6 +388,39 @@ class User : AppCompatActivity() {
             return null!!
         }
 
+        fun raiseQuery(Description: String, WebsiteId: String, UserId: String): JSONObject {
+
+            val jsonQuery = JSONObject()
+            jsonQuery.put("description", Description)
+            jsonQuery.put("webSiteId", WebsiteId)
+            jsonQuery.put("userId", UserId)
+
+            val jsonQueryResponse = jsonQuery.toString()
+
+            val url = URL("http://${ipaddress}/wda/user/raiseQuery")
+            val httpConnection = (url.openConnection() as HttpURLConnection).apply {
+                doInput = true
+                doOutput = true
+                requestMethod = "POST"
+                setRequestProperty("Content-Type", "application/json")
+            }
+            try {
+                val writeQuery = httpConnection.outputStream.bufferedWriter()
+                writeQuery.write(jsonQueryResponse)
+                writeQuery.flush()
+                if (httpConnection.responseCode == HttpURLConnection.HTTP_OK) {
+                    val QueryReader = httpConnection.inputStream.bufferedReader()
+                    val responseQueryString = QueryReader.readText()
+                    return JSONObject(responseQueryString)
+                }
+            } catch (ex: Exception) {
+                Log.e("Query Not raised", ex.message!!)
+            }
+
+            return null!!
+        }
+
+
         fun downloadWebsiteGif(context: Context,imageName: String){
 
             val url = URL("http://${ipaddress}/wda/templatesImages/${imageName}.gif")
@@ -422,6 +453,82 @@ class User : AppCompatActivity() {
             } catch (ex: Exception) {
                 Log.e("ProductdownloadImage", ex.message!!)
             }
+        }
+
+        fun getQueries(ContactNo: String): Array<Queries> {
+
+            val QueryList = arrayListOf<Queries>()
+
+            val url = URL("http://${ipaddress}/wda/admin/getQueriesBySearch/${ContactNo}")
+            val httpConnection = (url.openConnection() as HttpURLConnection).apply {
+                doInput = true
+                requestMethod = "GET"
+                setChunkedStreamingMode(0)
+            }
+            try {
+                if (httpConnection.responseCode == HttpURLConnection.HTTP_OK) {
+                    val QueryReader = httpConnection.inputStream.bufferedReader()
+                    val responseQueryString = JSONObject(QueryReader.readText())
+                    val QueryResponse = responseQueryString.getJSONArray("queries")
+                    var i = 0
+                    while (i < QueryResponse.length()) {
+                        val websiteData = QueryResponse.getJSONObject(i)
+                        val QueryData = Queries(
+                            websiteData.getString("_id"),
+                            websiteData.getString("description"),
+                            websiteData.getString("webId"),
+                            websiteData.getString("webName"),
+                            websiteData.getString("userId"),
+                            websiteData.getString("date")
+                        )
+                        QueryList.add(QueryData)
+                        i++
+                    }
+                    return QueryList.toTypedArray()
+                }
+
+            } catch (ex: Exception) {
+                Log.e("Query Error", ex.message!!)
+            }
+            return null!!
+
+        }
+
+        fun getWebsiteStatus(ContactNo: String): Status {
+            val StatusArray = arrayListOf<ListOfWebsite>()
+            val url = URL("http://${ipaddress}/wda/admin/webSiteStatus/${ContactNo}")
+            val httpConnection = (url.openConnection() as HttpURLConnection).apply {
+                doInput = true
+                requestMethod = "GET"
+                setChunkedStreamingMode(0)
+            }
+            try {
+                if (httpConnection.responseCode == HttpURLConnection.HTTP_OK) {
+                    val StatusReader = httpConnection.inputStream.bufferedReader()
+                    val responseStatusString = JSONObject(StatusReader.readText())
+                    val WebsiteStatusArray = responseStatusString.getJSONArray("statusData")
+                    var i = 0
+                    while (i < WebsiteStatusArray.length()) {
+                        val websiteStatusData = WebsiteStatusArray.getJSONObject(i)
+                        val WebsitesList = ListOfWebsite(
+                            websiteStatusData.getString("statusName"),
+                            websiteStatusData.getString("webSiteId"),
+                            websiteStatusData.getString("websiteName"),
+                            websiteStatusData.getString("domainName")
+                        )
+                        StatusArray.add(WebsitesList)
+                        i++
+                    }
+                    return Status(
+                        responseStatusString.getString("Name"),
+                        responseStatusString.getString("ContactNo"),
+                        responseStatusString.getJSONArray("statusData")
+                    )
+                }
+            } catch (ex: Exception) {
+                Log.e("Website Status", ex.message!!)
+            }
+            return null!!
         }
 
 

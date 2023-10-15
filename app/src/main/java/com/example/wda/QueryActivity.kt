@@ -1,5 +1,6 @@
 package com.example.wda
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,9 @@ import android.widget.Button
 import android.widget.Toast
 import com.example.wda.adapter.DropdownWebNameAdapter
 import com.example.wda.api.User
+import com.example.wda.model.UserWebsite
+import com.example.wda.model.Website
+import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,8 +21,9 @@ import kotlinx.coroutines.withContext
 class QueryActivity : AppCompatActivity() {
     private lateinit var TemplateSpinner:AutoCompleteTextView
     private lateinit var TemplateSpinnerLayout:TextInputLayout
-    private lateinit var UserQueryDescriptionTxt:TextInputLayout
+    private lateinit var UserQueryDescriptionTxt:TextInputEditText
     private lateinit var QuerySubmitBtn:Button
+    private lateinit var UserTemplates : Array<UserWebsite>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +38,8 @@ class QueryActivity : AppCompatActivity() {
         Log.i("UId",userid.toString())
         CoroutineScope(Dispatchers.IO).launch {
 
-                val UserTemplates =User.getWebsiteDetails(userid.toString())
+                UserTemplates =User.getWebsiteDetails(userid.toString())
+
             Log.i("User Template",UserTemplates.toString())
             if(UserTemplates.isEmpty()){
                 Toast.makeText(this@QueryActivity, "No Website Found", Toast.LENGTH_SHORT).show()
@@ -48,6 +54,17 @@ class QueryActivity : AppCompatActivity() {
             }
         }
 
+        QuerySubmitBtn.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                val UserQuery = User.raiseQuery(UserQueryDescriptionTxt.toString(), UserTemplates.toString(),userid.toString())
+                if (UserQuery.getBoolean("success")){
+                    val intent=Intent(this@QueryActivity,HomeActivity::class.java)
+                    startActivity(intent)
+                }else{
+                    Toast.makeText(this@QueryActivity, "Failed to raise Query", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
     }
 }
