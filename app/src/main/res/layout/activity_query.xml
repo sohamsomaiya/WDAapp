@@ -13,6 +13,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/querybg" />
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/SendQueryCard"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,4 +71,11 @@
                     />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/SendQueryCard"
+            >
+
+        </GridView>
 </androidx.constraintlayout.widget.ConstraintLayout>
