@@ -9,26 +9,10 @@
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="0sp"
+        app:layout_constraintHeight_percent="0.85"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
-
-    <Button
-        android:id="@+id/imagePathBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show Path"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/webView"
-        />
-
-    <TextView
-        android:id="@+id/layoutid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imagePathBtn"
         />
     <Button
         android:id="@+id/EditFontButton"
@@ -36,6 +20,17 @@
         android:layout_height="wrap_content"
         app:layout_constraintWidth_percent="0.5"
         android:text="Edit Font"
+        android:textAllCaps="false"
+        android:fontFamily="@font/inter"
+        app:layout_constraintBottom_toTopOf="@id/EditWebCancelBtn"
+        app:layout_constraintStart_toStartOf="parent"
+         />
+    <Button
+        android:id="@+id/EditWebCancelBtn"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.5"
+        android:text="Cancel"
         android:textAllCaps="false"
         android:fontFamily="@font/inter"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,6 +42,19 @@
         android:layout_height="wrap_content"
         app:layout_constraintWidth_percent="0.5"
         android:text="Edit Color"
+        android:fontFamily="@font/inter"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toTopOf="@id/EditWebSaveBtn"
+        app:layout_constraintStart_toEndOf="@id/EditFontButton"
+        />
+    <Button
+        android:id="@+id/EditWebSaveBtn"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.5"
+        android:text="Save"
         android:fontFamily="@font/inter"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
