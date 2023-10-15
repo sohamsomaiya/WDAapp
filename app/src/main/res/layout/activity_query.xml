@@ -72,6 +72,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
         <GridView
+            android:id="@+id/ViewQueryGridView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/SendQueryCard"

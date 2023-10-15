@@ -1,25 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ViewQueryCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
     <TextView
         android:id="@+id/WebsiteIdTxt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="Website id"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:gravity="center"
+        />
+        <TextView
+            android:id="@+id/QueryDate"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="Query Date"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            />
     <TextView
         android:id="@+id/WebNameTxt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/QueryDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="Website Name"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        />
+
     <TextView
         android:id="@+id/QueryDescription"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/query_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="Query Description"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        />
+<!--    <TextView-->
+<!--        android:id="@+id/query_id"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:text="Query Description"-->
+<!--        android:textAppearance="@style/TextAppearance.AppCompat.Headline"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+    </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -16,7 +16,7 @@ import java.net.URL
 class User : AppCompatActivity() {
 
     companion object{
-        val ipaddress="192.168.0.15:8000"
+        val ipaddress="192.168.36.253:8000"
 
         fun sendOtp(Name : String,Type : String,ContactNo : String): JSONObject {
             val jsonLogin=JSONObject()
@@ -476,7 +476,7 @@ class User : AppCompatActivity() {
                         val QueryData = Queries(
                             websiteData.getString("_id"),
                             websiteData.getString("description"),
-                            websiteData.getString("webId"),
+                            websiteData.optString("webId"),
                             websiteData.getString("webName"),
                             websiteData.getString("userId"),
                             websiteData.getString("date")

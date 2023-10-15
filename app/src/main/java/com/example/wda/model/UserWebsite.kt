@@ -10,6 +10,6 @@ class UserWebsite(
     var DomainName : String
 ) {
         override fun toString(): String {
-            return WebsiteId+" "+WebsiteName.toString()
+            return WebsiteName.toString()
         }
 }
