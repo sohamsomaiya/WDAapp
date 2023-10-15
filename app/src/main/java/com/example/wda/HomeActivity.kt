@@ -49,8 +49,8 @@ class HomeActivity : AppCompatActivity() {
                     drawer.closeDrawer(GravityCompat.START)
                 }
                 R.id.menu_profile -> {
-//                    val profileintent = Intent(this, ProfileActivity::class.java)
-//                    startActivity(profileintent)
+                    val profileintent = Intent(this, ProfileActivity::class.java)
+                    startActivity(profileintent)
                     drawer.closeDrawer(GravityCompat.START)
                 }
                 R.id.menu_logout -> {

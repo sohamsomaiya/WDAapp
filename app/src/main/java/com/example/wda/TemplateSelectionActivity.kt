@@ -16,6 +16,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.wda.R.id.SelectTemplateGridView
+import com.example.wda.adapter.SelectTemplateAdapter
 import com.example.wda.api.User
 import com.example.wda.model.Templates
 import com.google.android.material.card.MaterialCardView
@@ -33,6 +35,8 @@ class TemplateSelectionActivity : AppCompatActivity() {
 //    private lateinit var Template1_4: MaterialCardView
 //    private lateinit var Template2_4: MaterialCardView
     private lateinit var SelectTemplateGridLayout: GridLayout
+    private lateinit var TemplateSelecctSubmitBtn: Button
+    private lateinit var SelectTemplateGridView: GridView
 
 
     @SuppressLint("JavascriptInterface", "ClickableViewAccessibility")
@@ -51,21 +55,26 @@ class TemplateSelectionActivity : AppCompatActivity() {
 //        Template1_4=findViewById(R.id.Template1_4)
 //        Template2_4=findViewById(R.id.Template2_4)
         SelectTemplateGridLayout=findViewById(R.id.SelectTemplateGridLayout)
+        TemplateSelecctSubmitBtn=findViewById(R.id.TemplateSelecctSubmitBtn)
+        SelectTemplateGridView=findViewById(R.id.SelectTemplateGridView)
 
-        val selecttemplate = arrayListOf<Templates>()
         CoroutineScope(Dispatchers.IO).launch {
-            val message = User.getAllTemplate()
+            var message = User.getAllTemplate()
 
+            var templateGif:Unit
+            for (imageName in message){
+                templateGif=User.downloadWebsiteGif(this@TemplateSelectionActivity,imageName.TemplateImage)
+            }
             withContext(Dispatchers.Main) {
                 if (message.isEmpty()) {
                     Toast.makeText(
                         this@TemplateSelectionActivity,
-                        "No template foung",
+                        "No template found",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
-                    val intent = Intent(this@TemplateSelectionActivity, EditWebActivity::class.java)
-                    startActivity(intent)
+
+                    SelectTemplateGridView.adapter=SelectTemplateAdapter(this@TemplateSelectionActivity,message,templateGif,TemplateSelecctSubmitBtn)
                 }
             }
         }

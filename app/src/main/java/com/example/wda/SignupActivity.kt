@@ -18,6 +18,16 @@ class SignupActivity : AppCompatActivity() {
 //        supportActionBar?.hide()
         supportActionBar?.title=""
 
+        val sh=getSharedPreferences("wda", MODE_PRIVATE)
+        val userid=sh.getString("userId","")
+        val contactNo=sh.getString("contact","")
+        if(userid!="" && contactNo!=""){
+            val intent=Intent(this,HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+
         SignUpBtn=findViewById(R.id.SignUpBtn)
         LoginTxtBtn=findViewById(R.id.LoginBtn)
 
@@ -29,6 +39,7 @@ class SignupActivity : AppCompatActivity() {
         LoginTxtBtn.setOnClickListener {
             val login=Intent(this,LoginActivity::class.java)
             startActivity(login)
+            finish()
         }
 
     }

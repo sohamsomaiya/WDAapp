@@ -64,8 +64,9 @@ class LoginActivity : AppCompatActivity() {
         })
 
         val sh=getSharedPreferences("wda", MODE_PRIVATE)
-        val ContactNo = sh.getString("contact","")
-        val password = sh.getString("password","")
+
+        //val ContactNo = sh.getString("contact","")
+        //val password = sh.getString("password","")
         Password.addTextChangedListener {
 
             if (!Password.text.toString().contains(Regex("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=])(?=\\S+\$).{8,}\$")))
@@ -76,44 +77,43 @@ class LoginActivity : AppCompatActivity() {
 
         }
         Continue.setOnClickListener {
-            val phoneNo = ContactNo.toString()
-            val password = password.toString()
 
-            if (TextUtils.isEmpty(phoneNo)) {
+            if (TextUtils.isEmpty(MobileNumber.text.toString()) || TextUtils.isEmpty(Password.text.toString())) {
                 Toast.makeText(
                     this@LoginActivity,
-                    "Phone Number cannot be empty",
+                    "Phone Number or Password cannot be empty",
                     Toast.LENGTH_SHORT
                 ).show()
-            } else if (TextUtils.isEmpty(password) && password.length < 8 ) {
+            } else if (Password.text.toString().length < 8 ) {
                 Toast.makeText(
                     this@LoginActivity,
                     "Password cannot be empty or must contain 8 characters",
                     Toast.LENGTH_SHORT
                 ).show()
-            }
-
-
-            CoroutineScope(Dispatchers.IO).launch {
-                val messege = User.login(ContactNo!!, password!!,"user")
-                withContext(Dispatchers.Main) {
-                    if (messege.getBoolean("success")) {
-
-                        Toast.makeText(
-                            this@LoginActivity,
-                            "LoggedIN",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        val homeintent = Intent(this@LoginActivity,HomeActivity::class.java)
-                        startActivity(homeintent)
-                    } else {
-                        Toast.makeText(this@LoginActivity,messege.getString("message"),Toast.LENGTH_LONG).show()
+            }else{
+                CoroutineScope(Dispatchers.IO).launch {
+                    val messege = User.login(MobileNumber.text.toString(), Password.text.toString(),"user")
+                    withContext(Dispatchers.Main) {
+                        if (messege.getBoolean("success")) {
+//                            Toast.makeText(
+//                                this@LoginActivity,
+//                                "LoggedIN",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+                            val sp = getSharedPreferences("wda", MODE_PRIVATE)
+                            val editor=sp.edit()
+                            editor.putString("userId",messege.getJSONObject("name").getString("_id"))
+                            editor.putString("contact",messege.getJSONObject("name").getString("ContactNo"))
+                            editor.apply()
+                            val intent =Intent(this@LoginActivity,HomeActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(this@LoginActivity,messege.getString("message"),Toast.LENGTH_LONG).show()
+                        }
                     }
-
                 }
             }
-
-
         }
     }
 }

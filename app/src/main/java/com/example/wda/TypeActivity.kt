@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import com.google.android.material.card.MaterialCardView
 
 class TypeActivity : AppCompatActivity() {
@@ -39,6 +40,8 @@ class TypeActivity : AppCompatActivity() {
             val webType = getSharedPreferences("wda", MODE_PRIVATE)
             val editor=webType.edit()
             editor.putString("WebsiteType",selectedCard)
+            editor.apply()
+           // Toast.makeText(this, selectedCard, Toast.LENGTH_SHORT).show()
             var intent = Intent(this@TypeActivity,CreateWebActivity::class.java)
             startActivity(intent)
         }

@@ -17,7 +17,7 @@ import java.net.URL
 class User : AppCompatActivity() {
 
     companion object{
-        val ipaddress="172.16.3.192:8000"
+        val ipaddress="192.168.0.15:8000"
 
         fun sendOtp(Name : String,Type : String,ContactNo : String): JSONObject {
             val jsonLogin=JSONObject()
@@ -355,7 +355,7 @@ class User : AppCompatActivity() {
 
             val TemplateList = arrayListOf<Templates>()
 
-            val url = URL("http://${ipaddress}/wda/admin/getAllTemplate")
+            val url = URL("http://${ipaddress}/wda/admin/getAllTemplates")
             val httpConnection = (url.openConnection() as HttpURLConnection).apply {
                 doInput = true
                 requestMethod = "GET"
@@ -370,10 +370,10 @@ class User : AppCompatActivity() {
                     while (i < TemplateResponse.length()) {
                         val TempData = TemplateResponse.getJSONObject(i)
                         val  TemplateData= Templates(
-                            TempData.getString("_id"),
+                            i,
                             TempData.getString("templatePath"),
                             "Template $i",
-                            null
+                            TempData.getString("imageName")
                         )
                         TemplateList.add(TemplateData)
                         i++
@@ -385,6 +385,39 @@ class User : AppCompatActivity() {
 
             }
             return null!!
+        }
+
+        fun downloadWebsiteGif(context: Context,imageName: String){
+
+            val url = URL("http://${ipaddress}/wda/templatesImage/${imageName}")
+
+            val connection = (url.openConnection() as HttpURLConnection).apply {
+                doInput = true
+                requestMethod = "GET"
+            }
+
+            try {
+                val cacheDirPath = context.externalCacheDir!!.absolutePath
+                val imageDirPath = "${cacheDirPath}/WebsiteImage"
+                val imagepath = File(imageDirPath)
+
+                if (!imagepath.exists()) {
+                    imagepath.mkdirs()
+                }
+
+                val imageSavePath =
+                    FileOutputStream("${imagepath.absolutePath}/${imageName}")
+
+                Log.i("ImagePAth", "${imagepath.absolutePath}/${imageName}")
+
+                connection.connect()
+                if (connection.responseCode == HttpURLConnection.HTTP_OK) {
+                    val bitmap = BitmapFactory.decodeStream(connection.inputStream)
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, imageSavePath)
+                }
+            } catch (ex: Exception) {
+                Log.e("ProductdownloadImage", ex.message!!)
+            }
         }
 
 

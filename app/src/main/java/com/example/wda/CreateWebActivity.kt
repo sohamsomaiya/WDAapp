@@ -42,6 +42,7 @@ class CreateWebActivity : AppCompatActivity() {
         val getWebType=getSharedPreferences("wda", MODE_PRIVATE)
         val websiteType=getWebType.getString("WebsiteType","")
         Toast.makeText(this, websiteType, Toast.LENGTH_SHORT).show()
+
         EnterDetailsTxt=findViewById(R.id.EnterDetailsTxt)
         EnterDetailsSubTxt=findViewById(R.id.EnterDetailsSubTxt)
         EnterDetailstxtLayout=findViewById(R.id.EnterDetailstxtLayout)

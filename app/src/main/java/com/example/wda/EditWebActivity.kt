@@ -240,9 +240,10 @@ class EditWebActivity : AppCompatActivity() {
         web.settings.useWideViewPort = true
         web.webViewClient = MyWebViewClient()
 
+
         web.addJavascriptInterface(this, "AndroidInterface")
 //        web.loadDataWithBaseURL(null, getHtmlContent(), "text/html", "UTF-8", null)
-        val baseUrl = "http://${ipaddress}/wda/template3.html"
+        val baseUrl = "http://${ipaddress}"+intent.getStringExtra("TempPath")
         val uri = Uri.parse(baseUrl)
             .buildUpon()
             .appendQueryParameter("ipaddress", ipaddress)
