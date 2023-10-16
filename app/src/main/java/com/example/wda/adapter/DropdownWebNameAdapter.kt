@@ -31,7 +31,6 @@ class DropdownWebNameAdapter (private val activity: Activity, private val object
         viewHolder.hiddenText.text = objects[position].WebsiteId
         viewHolder.WebsiteName.text = objects[position].WebsiteName
 
-
         return view!!
     }
 

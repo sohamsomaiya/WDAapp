@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.Toast
@@ -19,52 +20,67 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class QueryActivity : AppCompatActivity() {
-    private lateinit var TemplateSpinner:AutoCompleteTextView
-    private lateinit var TemplateSpinnerLayout:TextInputLayout
-    private lateinit var UserQueryDescriptionTxt:TextInputEditText
-    private lateinit var QuerySubmitBtn:Button
-    private lateinit var UserTemplates : Array<UserWebsite>
+    private lateinit var TemplateSpinner: AutoCompleteTextView
+    private lateinit var TemplateSpinnerLayout: TextInputLayout
+    private lateinit var UserQueryDescriptionTxt: TextInputEditText
+    private lateinit var QuerySubmitBtn: Button
+    private lateinit var UserTemplates: Array<UserWebsite>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_query)
-        TemplateSpinner=findViewById(R.id.TemplateAutoCompleteTextView)
-        TemplateSpinnerLayout=findViewById(R.id.TemplateSelectLayout)
-        UserQueryDescriptionTxt=findViewById(R.id.UserQueryDescriptionTxt)
-        QuerySubmitBtn=findViewById(R.id.QuerySubmitBtn)
+        TemplateSpinner = findViewById(R.id.TemplateAutoCompleteTextView)
+        TemplateSpinnerLayout = findViewById(R.id.TemplateSelectLayout)
+        UserQueryDescriptionTxt = findViewById(R.id.UserQueryDescriptionTxt)
+        QuerySubmitBtn = findViewById(R.id.QuerySubmitBtn)
 
         val prefrenceQuery = getSharedPreferences("wda", MODE_PRIVATE)
-        val userid = prefrenceQuery.getString("userId","")
-        Log.i("UId",userid.toString())
+        val userid = prefrenceQuery.getString("userId", "")
+        Log.i("UId", userid.toString())
         CoroutineScope(Dispatchers.IO).launch {
 
-                UserTemplates =User.getWebsiteDetails(userid.toString())
+            UserTemplates = User.getWebsiteDetails(userid.toString())
 
-            Log.i("User Template",UserTemplates.toString())
-            if(UserTemplates.isEmpty()){
+            //Log.i("User Template",UserTemplates.toString())
+            if (UserTemplates.isEmpty()) {
                 Toast.makeText(this@QueryActivity, "No Website Found", Toast.LENGTH_SHORT).show()
-            }else{
+            } else {
                 UserTemplates.also {
-                    withContext(Dispatchers.Main){
-                        var UserTempadapter = DropdownWebNameAdapter(this@QueryActivity,UserTemplates)
+                    withContext(Dispatchers.Main) {
+                        var UserTempadapter =
+                            DropdownWebNameAdapter(this@QueryActivity, UserTemplates)
                         TemplateSpinner.setAdapter(UserTempadapter)
+                        TemplateSpinner.setOnItemClickListener { parent, view, position, id ->
+                            var ID=parent?.getItemAtPosition(0).toString()
+                            Log.i("Website ID",ID)
+                        }
 
                     }
                 }
             }
+            Log.i("Number of templates", UserTemplates[1].toString())
         }
+
 
         QuerySubmitBtn.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                val UserQuery = User.raiseQuery(UserQueryDescriptionTxt.toString(), UserTemplates.toString(),userid.toString())
-                if (UserQuery.getBoolean("success")){
-                    val intent=Intent(this@QueryActivity,HomeActivity::class.java)
+                val UserQuery = User.raiseQuery(
+                    UserQueryDescriptionTxt.toString(),
+                    UserTemplates.toString(),
+                    userid.toString()
+                )
+                if (UserQuery.getBoolean("success")) {
+                    val intent = Intent(this@QueryActivity, HomeActivity::class.java)
                     startActivity(intent)
-                }else{
-                    Toast.makeText(this@QueryActivity, "Failed to raise Query", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        this@QueryActivity,
+                        UserQuery.getString("message"),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
-
     }
+
 }
