@@ -10,6 +10,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#BDACA9A9</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="transparentGray">#FFFFFF</color>
     <color name="RoseQuartz">#F9CCD3</color>
     <color name="RoseRed">#AA1945</color>
     <color name="RoseQuartz2">#F1CED4</color>

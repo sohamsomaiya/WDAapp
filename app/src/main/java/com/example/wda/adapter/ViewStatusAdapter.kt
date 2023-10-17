@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.wda.R
-import com.example.wda.model.Queries
+import com.example.wda.model.ListOfWebsite
 
-class ViewQueryAdapter(private val activity: Activity, private val objects: Array<Queries>) :
-    ArrayAdapter<Queries>(activity, R.layout.viewquerygrid
+class ViewStatusAdapter(private val activity: Activity, private val objects: Array<ListOfWebsite>) :
+    ArrayAdapter<ListOfWebsite>(activity, R.layout.viewstatusgrid
         , objects) {
     @SuppressLint("SetTextI18n")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -18,19 +18,20 @@ class ViewQueryAdapter(private val activity: Activity, private val objects: Arra
         val viewHolder: ViewHolder
 
         if (view == null) {
-            view = activity.layoutInflater.inflate(R.layout.viewquerygrid, parent, false)
+            view = activity.layoutInflater.inflate(R.layout.viewstatusgrid, parent, false)
             viewHolder = ViewHolder()
-            viewHolder.WebsiteName = view.findViewById(R.id.WebNameTxt)
-            viewHolder.QueryDate = view.findViewById(R.id.QueryDate)
-            viewHolder.QueryDescription = view.findViewById(R.id.QueryDescription)
+            viewHolder.WebsiteName = view.findViewById(R.id.WebName)
+            viewHolder.WebsiteId = view.findViewById(R.id.WebId)
+            viewHolder.WebStatus = view.findViewById(R.id.WebStatus)
+            viewHolder.DomainName = view.findViewById(R.id.WebDomain)
 
             view.tag = viewHolder
         } else
             viewHolder = view.tag as ViewHolder
-
-        viewHolder.QueryDate.text = "Query Date:- "+objects[position].Date
+        viewHolder.WebsiteId.text = "Website Id:- "+objects[position].WebsiteId
         viewHolder.WebsiteName.text = "Website Name:- "+objects[position].WebsiteName
-        viewHolder.QueryDescription.text = "Description:- "+objects[position].Description
+        viewHolder.WebStatus.text = "Website Status:- "+objects[position].StatusName
+        viewHolder.DomainName.text = "Domain Name:- "+objects[position].DomainName
 
 //        fun getWebsiteId(position: Int): String {
 //            return objects[position].WebsiteId!!
@@ -42,8 +43,9 @@ class ViewQueryAdapter(private val activity: Activity, private val objects: Arra
     companion object {
         class ViewHolder {
             lateinit var WebsiteName: TextView
-            lateinit var QueryDate: TextView
-            lateinit var QueryDescription: TextView
+            lateinit var WebsiteId: TextView
+            lateinit var DomainName: TextView
+            lateinit var WebStatus: TextView
         }
     }
 }

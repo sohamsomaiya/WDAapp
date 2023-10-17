@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.model.Profile
 import com.example.wda.model.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
@@ -16,7 +17,7 @@ import java.net.URL
 class User : AppCompatActivity() {
 
     companion object{
-        val ipaddress="192.168.36.253:8000"
+        val ipaddress="172.16.3.192:8000"
 
         fun sendOtp(Name : String,Type : String,ContactNo : String): JSONObject {
             val jsonLogin=JSONObject()
@@ -207,7 +208,6 @@ class User : AppCompatActivity() {
 
         fun downloadProfileImage(context: Context, imageName: String)
         {
-
             val url = URL("http://${ipaddress}/wda/userProfile/${imageName}")
 
             val connection = (url.openConnection() as HttpURLConnection).apply {
@@ -432,14 +432,17 @@ class User : AppCompatActivity() {
 
             try {
                 val cacheDirPath = context.externalCacheDir!!.absolutePath
-                val imageDirPath = "${cacheDirPath}/WebsiteImage"
-                val imagepath = File(imageDirPath,"${imageName}.gif")
-
+                val imageDirPath = ("${cacheDirPath}/WebsiteImage")
+                val imagepath = File(imageDirPath)
                 if (!imagepath.exists()) {
                     imagepath.mkdirs()
                 }
 
-                val gifSavePath = FileOutputStream(imagepath)
+                val gifSavePath =
+                    FileOutputStream(imagepath.absolutePath+"/${imageName}.gif")
+
+                Log.i("Image Dir Path",imageDirPath)
+
 
                 connection.connect()
                 if (connection.responseCode == HttpURLConnection.HTTP_OK) {
@@ -451,7 +454,7 @@ class User : AppCompatActivity() {
                     }
                 }
             } catch (ex: Exception) {
-                Log.e("ProductdownloadImage", ex.message!!)
+                Log.e("Download Gif", ex.message!!)
             }
         }
 
@@ -474,11 +477,8 @@ class User : AppCompatActivity() {
                     while (i < QueryResponse.length()) {
                         val websiteData = QueryResponse.getJSONObject(i)
                         val QueryData = Queries(
-                            websiteData.getString("_id"),
                             websiteData.getString("description"),
-                            websiteData.optString("webId"),
                             websiteData.getString("webName"),
-                            websiteData.getString("userId"),
                             websiteData.getString("date")
                         )
                         QueryList.add(QueryData)
@@ -494,7 +494,7 @@ class User : AppCompatActivity() {
 
         }
 
-        fun getWebsiteStatus(ContactNo: String): Status {
+        fun getWebsiteStatus(ContactNo: String): Array<ListOfWebsite> {
             val StatusArray = arrayListOf<ListOfWebsite>()
             val url = URL("http://${ipaddress}/wda/admin/webSiteStatus/${ContactNo}")
             val httpConnection = (url.openConnection() as HttpURLConnection).apply {
@@ -519,11 +519,7 @@ class User : AppCompatActivity() {
                         StatusArray.add(WebsitesList)
                         i++
                     }
-                    return Status(
-                        responseStatusString.getString("Name"),
-                        responseStatusString.getString("ContactNo"),
-                        responseStatusString.getJSONArray("statusData")
-                    )
+                    return StatusArray.toTypedArray()
                 }
             } catch (ex: Exception) {
                 Log.e("Website Status", ex.message!!)

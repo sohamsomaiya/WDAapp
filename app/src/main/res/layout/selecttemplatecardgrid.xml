@@ -9,12 +9,8 @@
     android:focusable="true"
     android:checkable="true"
     android:elevation="@dimen/cardview_default_elevation"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_margin="20dp"
     app:strokeColor="@color/blue"
-    app:layout_constraintBottom_toBottomOf="parent"
-
+    android:layout_margin="25dp"
     >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

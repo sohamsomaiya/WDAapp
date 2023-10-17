@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.wda.R
 import com.example.wda.model.UserWebsite
-import com.example.wda.model.Website
 
 class DropdownWebNameAdapter (private val activity: Activity, private val objects: Array<UserWebsite>) :
     ArrayAdapter<UserWebsite>(activity, R.layout.dropdowngrid
