@@ -47,6 +47,9 @@ class SelectTemplateAdapter(private val activity: Activity, private val template
         viewHolder.TemplateCard.id=template[position].Id
         viewHolder.SelectTemplateName.text=template[position].TemplateName
         var gifUri="${activity.externalCacheDir?.absolutePath}/WebsiteImage/${template[position].TemplateImage}.gif"
+        Log.i("Adapter Path",gifUri)
+//        /storage/emulated/0/Android/data/com.example.wda/cache/WebsiteImage/template2.gif
+//        /storage/emulated/0/Android/data/com.example.wda/cache/WebsiteImage/template2.gif/template2
         var tempPath=""
 //        viewHolder.TemplateCard.isChecked=false
         Glide.with(activity)
@@ -91,7 +94,7 @@ class SelectTemplateAdapter(private val activity: Activity, private val template
             lateinit var SelectTemplateName: TextView
             lateinit var SelectTemplateImage: GifImageView
             lateinit var TemplateCard: MaterialCardView
-            lateinit var TempCard: MaterialCardView
+
         }
     }
 }

@@ -17,16 +17,26 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".SelectWebToEdit"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ViewWebStatusActivity"
+            android:exported="false" />
+        <activity
             android:name=".QueryActivity"
             android:exported="true" />
         <activity
             android:name=".TemplateSelectionActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".CreateWebActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".EditWebActivity"
             android:exported="true" />
@@ -35,12 +45,8 @@
             android:exported="true" />
         <activity
             android:name=".SignupActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".HomeActivity"

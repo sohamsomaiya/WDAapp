@@ -32,11 +32,15 @@ class HomeActivity : AppCompatActivity() {
         QueryCard=findViewById(R.id.QueryCard)
 
         CreateWebCard.setOnClickListener {
-            var intent = Intent(this@HomeActivity,TypeActivity::class.java)
+            val intent = Intent(this@HomeActivity,TypeActivity::class.java)
             startActivity(intent)
         }
         QueryCard.setOnClickListener {
-            var intent = Intent(this@HomeActivity,QueryActivity::class.java)
+            val intent = Intent(this@HomeActivity,QueryActivity::class.java)
+            startActivity(intent)
+        }
+        ViewSiteStatusCard.setOnClickListener {
+            val intent = Intent(this@HomeActivity,ViewWebStatusActivity::class.java)
             startActivity(intent)
         }
         navigationView = findViewById(R.id.NavView)
