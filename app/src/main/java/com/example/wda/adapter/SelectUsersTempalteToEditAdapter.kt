@@ -5,6 +5,7 @@ import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.wda.R
@@ -12,7 +13,7 @@ import com.example.wda.model.UserWebsite
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.divider.MaterialDivider
 
-class SelectUsersTempalteToEditAdapter (private val activity: Activity, private val objects: Array<UserWebsite>) :
+class SelectUsersTempalteToEditAdapter (private val activity: Activity, private val objects: Array<UserWebsite>,private val SubmitBtn:Button) :
     ArrayAdapter<UserWebsite>(activity, R.layout.userstemplatetoeditgrid
         , objects) {
     private var selectedPosition = -1

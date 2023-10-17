@@ -36,7 +36,7 @@ class SelectWebToEdit : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
-                    SelectToEditGrid.adapter= SelectUsersTempalteToEditAdapter(this@SelectWebToEdit,message)
+                    SelectToEditGrid.adapter= SelectUsersTempalteToEditAdapter(this@SelectWebToEdit,message,SelectToEditSubmit)
 
                 }
             }

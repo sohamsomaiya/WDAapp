@@ -526,6 +526,41 @@ class User : AppCompatActivity() {
             }
             return null!!
         }
+        fun downloadLogo(context: Context,WebsiteName: String,LogoName : String){
+            val url = URL("http://${ipaddress}/wda/Images/${WebsiteName}/${LogoName}")
+            val httpConnection = (url.openConnection() as HttpURLConnection).apply {
+                doInput = true
+                requestMethod = "GET"
+                setChunkedStreamingMode(0)
+            }
+            try
+            {
+                val cacheDirPath = context.externalCacheDir!!.absolutePath
+                val imageDirPath = "${cacheDirPath}/websiteLogo"
+                val imagepath = File(imageDirPath)
+
+                if (!imagepath.exists())
+                {
+                    imagepath.mkdirs()
+                }
+
+                val imageSavePath =
+                    FileOutputStream("${imagepath.absolutePath}/${LogoName}")
+
+                Log.i("ImagePAth","${imagepath.absolutePath}/${LogoName}")
+
+                httpConnection.connect()
+                if (httpConnection.responseCode == HttpURLConnection.HTTP_OK)
+                {
+                    val bitmap = BitmapFactory.decodeStream(httpConnection.inputStream)
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, imageSavePath)
+                }
+            }
+            catch (ex: Exception)
+            {
+                Log.e("Download Logo", ex.message!!)
+            }
+        }
 
 
     }
