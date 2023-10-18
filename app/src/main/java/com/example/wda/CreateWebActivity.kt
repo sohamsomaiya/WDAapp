@@ -61,7 +61,6 @@ class CreateWebActivity : AppCompatActivity() {
         DOI.visibility=View.VISIBLE
         COI.visibility=View.VISIBLE
         TAN.visibility=View.VISIBLE
-        DomainNameLayout.visibility=View.VISIBLE
 
 
         if (websiteType=="Individual"){
@@ -70,7 +69,6 @@ class CreateWebActivity : AppCompatActivity() {
             DOI.visibility=View.GONE
             COI.visibility=View.GONE
             TAN.visibility=View.GONE
-            DomainNameLayout.visibility=View.GONE
 
         }
 
@@ -91,8 +89,18 @@ class CreateWebActivity : AppCompatActivity() {
         })
 
         EnterDetailsSubmitbtn.setOnClickListener {
+            Toast.makeText(this@CreateWebActivity, EnterDetailsTxtInput.text.toString(), Toast.LENGTH_SHORT).show()
+
+            val CreateWebPrefrense = getSharedPreferences("wda", MODE_PRIVATE)
+            val edit= CreateWebPrefrense.edit()
+            edit.putString("UName", EnterDetailsTxtInput.text.toString())
+            edit.putString("UDOI",DOIInput.text.toString())
+            edit.putString("UCOI",COIInput.text.toString())
+            edit.putString("UTAN",TANInput.text.toString())
+            edit.apply()
             val intent=Intent(this@CreateWebActivity,TemplateSelectionActivity::class.java)
             startActivity(intent)
+
         }
     }
 }

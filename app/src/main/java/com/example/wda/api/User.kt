@@ -17,7 +17,7 @@ import java.net.URL
 class User : AppCompatActivity() {
 
     companion object{
-        val ipaddress="172.16.3.192:8000"
+        val ipaddress="192.168.36.253:8000"
 
         fun sendOtp(Name : String,Type : String,ContactNo : String): JSONObject {
             val jsonLogin=JSONObject()
@@ -280,7 +280,7 @@ class User : AppCompatActivity() {
             jsonLogin.put("htmlFile",htmlFile)
             jsonLogin.put("webSiteName",websiteName)
             jsonLogin.put("websiteType",websiteType)
-            jsonLogin.put("dateOfIntegration",dateOfIntegration)
+            jsonLogin.put("dateOfIncorporation",dateOfIntegration)
             jsonLogin.put("corporateIdentificationNo",corporateIdentificationNo)
             jsonLogin.put("taxDeductionAccNo",taxDeductionAccNo)
             jsonLogin.put("goodsServiceTax",goodsServiceTax)
@@ -299,7 +299,7 @@ class User : AppCompatActivity() {
                 val writeLogindata= httpconnection.outputStream.bufferedWriter()
                 writeLogindata.write(jsonLoginResponse)
                 writeLogindata.flush()
-                if (httpconnection.responseCode==HttpURLConnection.HTTP_OK){
+                    if (httpconnection.responseCode==HttpURLConnection.HTTP_OK){
                     val jsonResponse = httpconnection.inputStream.bufferedReader()
                     val jsonResponseLogin=jsonResponse.readText()
                     return JSONObject(jsonResponseLogin)
