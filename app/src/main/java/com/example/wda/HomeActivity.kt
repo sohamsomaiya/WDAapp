@@ -43,6 +43,10 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this@HomeActivity,ViewWebStatusActivity::class.java)
             startActivity(intent)
         }
+        EditWebCard.setOnClickListener {
+            val intent = Intent(this@HomeActivity,SelectWebToEdit::class.java)
+            startActivity(intent)
+        }
         navigationView = findViewById(R.id.NavView)
 //        val header = navigationView.getHeaderView(0)
         drawer = findViewById(R.id.navDrawer)

@@ -2,13 +2,17 @@ package com.example.wda.adapter
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.wda.EditWebActivity
 import com.example.wda.R
+import com.example.wda.api.User
 import com.example.wda.model.UserWebsite
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.divider.MaterialDivider
@@ -75,6 +79,14 @@ class SelectUsersTempalteToEditAdapter (private val activity: Activity, private 
             }
             viewHolder.WebCard.isChecked = true
             viewHolder.WebCard.strokeWidth = 2
+            val templatePathprefrense =activity.getSharedPreferences("wda", Context.MODE_PRIVATE)
+            val editor = templatePathprefrense.edit()
+            editor.putString("TemplatePath","/wda/${objects[position].DomainName}")
+            editor.apply()
+        }
+        SubmitBtn.setOnClickListener {
+            val intent= Intent(activity, EditWebActivity::class.java)
+            activity.startActivity(intent)
         }
         return view!!
     }
