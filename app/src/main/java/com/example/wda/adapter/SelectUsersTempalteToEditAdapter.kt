@@ -4,12 +4,14 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.text.TextUtils.replace
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import com.example.wda.EditWebActivity
 import com.example.wda.R
 import com.example.wda.api.User
@@ -17,7 +19,7 @@ import com.example.wda.model.UserWebsite
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.divider.MaterialDivider
 
-class SelectUsersTempalteToEditAdapter (private val activity: Activity, private val objects: Array<UserWebsite>,private val SubmitBtn:Button) :
+class SelectUsersTempalteToEditAdapter (private val activity: Activity, private val objects: Array<UserWebsite>,private val SubmitBtn:Button,private val WebsiteImage : Unit) :
     ArrayAdapter<UserWebsite>(activity, R.layout.userstemplatetoeditgrid
         , objects) {
     private var selectedPosition = -1
@@ -53,13 +55,18 @@ class SelectUsersTempalteToEditAdapter (private val activity: Activity, private 
             view.tag = viewHolder
         } else
             viewHolder = view.tag as ViewHolder
+        val cacheDirPath = this.context.externalCacheDir!!.absolutePath
+        val websiteName = objects[position].WebsiteName!!.replace("\\s+".toRegex(), "")
 
+        val imageDirPath = "${cacheDirPath}/${websiteName}/logo.jpg"
         viewHolder.WebsiteName.text = "Webiste Name:- "+objects[position].WebsiteName
         viewHolder.WebsiteType.text = "Webiste Type:- "+objects[position].WebsiteType
         viewHolder.DomainName.text = "Domain Name:- "+objects[position].DomainName
         viewHolder.DateOfIncorporation.text = "DOI :- "+objects[position].DateOfIncorporation
         viewHolder.CorporateIdentificationNo.text = "COI:- "+objects[position].CorporateIdentificationNo
         viewHolder.LogoImage.setBackgroundResource(R.drawable.templatesample)
+        viewHolder.LogoImage.setImageURI(imageDirPath.toUri())
+
         viewHolder.WebCard.isChecked = (position == selectedPosition)
         viewHolder.WebCard.setOnClickListener {
             if (position != selectedPosition) {
@@ -71,7 +78,6 @@ class SelectUsersTempalteToEditAdapter (private val activity: Activity, private 
                             previousSelectedView.tag as ViewHolder
                         previousSelectedViewHolder.WebCard.isChecked = false
                         previousSelectedViewHolder.WebCard.strokeWidth = 0
-
                     }
                 }
                 // Update the selected position to the current card

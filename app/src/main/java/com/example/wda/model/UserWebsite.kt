@@ -8,7 +8,6 @@ class UserWebsite(
     var CorporateIdentificationNo :String?,
     var TaxDeductionAccNo:String,
     var DomainName : String
-//    var LogoImage : String?
 )
 {
         override fun toString(): String {

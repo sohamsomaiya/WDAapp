@@ -17,7 +17,7 @@ import java.net.URL
 class User : AppCompatActivity() {
 
     companion object{
-        val ipaddress="192.168.36.253:8000"
+        val ipaddress="192.168.0.15:8000"
 
         fun sendOtp(Name : String,Type : String,ContactNo : String): JSONObject {
             val jsonLogin=JSONObject()
@@ -240,7 +240,7 @@ class User : AppCompatActivity() {
             }
             catch (ex: Exception)
             {
-                Log.e("ProductdownloadImage", ex.message!!)
+                Log.e("Profile download Image", ex.message!!)
             }
         }
 
@@ -526,8 +526,9 @@ class User : AppCompatActivity() {
             }
             return null!!
         }
-        fun downloadLogo(context: Context,WebsiteName: String,LogoName : String){
-            val url = URL("http://${ipaddress}/wda/Images/${WebsiteName}/${LogoName}")
+        fun downloadLogo(context: Context,WebsiteName: String){
+            val websiteName = WebsiteName.replace("\\s+".toRegex(), "")
+            val url = URL("http://${ipaddress}/wda/Images/${websiteName}/logo.jpg")
             val httpConnection = (url.openConnection() as HttpURLConnection).apply {
                 doInput = true
                 requestMethod = "GET"
@@ -536,7 +537,7 @@ class User : AppCompatActivity() {
             try
             {
                 val cacheDirPath = context.externalCacheDir!!.absolutePath
-                val imageDirPath = "${cacheDirPath}/websiteLogo"
+                val imageDirPath = "${cacheDirPath}/${websiteName}"
                 val imagepath = File(imageDirPath)
 
                 if (!imagepath.exists())
@@ -545,9 +546,9 @@ class User : AppCompatActivity() {
                 }
 
                 val imageSavePath =
-                    FileOutputStream("${imagepath.absolutePath}/${LogoName}")
+                    FileOutputStream("${imagepath.absolutePath}/logo.jpg")
 
-                Log.i("ImagePAth","${imagepath.absolutePath}/${LogoName}")
+                Log.i("ImagePAth","${imagepath.absolutePath}/logo.jpg")
 
                 httpConnection.connect()
                 if (httpConnection.responseCode == HttpURLConnection.HTTP_OK)
@@ -560,6 +561,38 @@ class User : AppCompatActivity() {
             {
                 Log.e("Download Logo", ex.message!!)
             }
+        }
+
+
+        fun updateWebsite(WebsiteCode: String, WebsiteName: String): JSONObject {
+
+            val WebsiteJson = JSONObject()
+            WebsiteJson.put("updateWebsiteCode", WebsiteCode)
+            WebsiteJson.put("webSiteName", WebsiteName)
+
+            val jsonWebsiteResponse = WebsiteJson.toString()
+
+            val url = URL("http://${ipaddress}/wda/business/updateWebsite")
+            val httpconnection = (url.openConnection() as HttpURLConnection).apply {
+                doInput = true
+                doOutput = true
+                requestMethod = "PUT"
+                setRequestProperty("Content-Type", "application/json")
+            }
+            try {
+                val writeUpdatedWebsite = httpconnection.outputStream.bufferedWriter()
+                writeUpdatedWebsite.write(jsonWebsiteResponse)
+                writeUpdatedWebsite.flush()
+                if (httpconnection.responseCode == HttpURLConnection.HTTP_OK) {
+                    val jsonUpdateWebsite = httpconnection.inputStream.bufferedReader()
+                    val readUpdatedWebsite = jsonUpdateWebsite.readText()
+                    return JSONObject(readUpdatedWebsite)
+                }
+            } catch (ex: Exception) {
+                Log.e("Website Updation Error", ex.message!!)
+            }
+
+            return null!!
         }
 
 

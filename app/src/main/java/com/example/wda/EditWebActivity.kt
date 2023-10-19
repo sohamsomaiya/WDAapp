@@ -289,6 +289,20 @@ class EditWebActivity : AppCompatActivity() {
                         }
                     }
                 }
+                CoroutineScope(Dispatchers.IO).launch {
+                    withContext(Dispatchers.Main){
+                        val cleanedContent = content.trim().removePrefix("\"").removeSuffix("\"")
+                        val cleanedHtml = cleanedContent.replace("\\u003C", "<")
+                            .replace("\\n", "")
+                            .replace("\\", "")
+
+                        val compressedHtml = compressGzip(cleanedHtml)
+                        val base64Html = Base64.encodeToString(compressedHtml, Base64.DEFAULT)
+                        withContext(Dispatchers.IO){
+                            User.updateWebsite(base64Html,Uname.toString())
+                        }
+                    }
+                }
             }
 
         }
