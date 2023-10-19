@@ -48,6 +48,7 @@ class QueryActivity : AppCompatActivity() {
             ViewQueries=User.getQueries(contact.toString())
 
             if (UserTemplates.isEmpty()) {
+                Toast.makeText(this@QueryActivity,"No Data Found", Toast.LENGTH_SHORT).show()
                 withContext(Dispatchers.Main){
                     Toast.makeText(this@QueryActivity, "No Website Found", Toast.LENGTH_SHORT).show()
                     TemplateSpinnerLayout.visibility= View.GONE

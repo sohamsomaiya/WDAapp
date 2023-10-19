@@ -51,11 +51,17 @@ class TemplateSelectionActivity : AppCompatActivity() {
         SelectTemplateGridView=findViewById(R.id.SelectTemplateGridView)
 
         CoroutineScope(Dispatchers.IO).launch {
-            var message = User.getAllTemplate()
-
-
-            for (imageName in message){
-                templateGif=User.downloadWebsiteGif(this@TemplateSelectionActivity,imageName.TemplateImage)
+            val message = User.getAllTemplate()
+            if (message.isEmpty()){
+                Toast.makeText(this@TemplateSelectionActivity,"No Data Found" , Toast.LENGTH_SHORT).show()
+            }
+            else {
+                for (imageName in message) {
+                    templateGif = User.downloadWebsiteGif(
+                        this@TemplateSelectionActivity,
+                        imageName.TemplateImage
+                    )
+                }
             }
 
             withContext(Dispatchers.Main) {

@@ -30,6 +30,7 @@ class ViewWebStatusActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             ViewStatus = User.getWebsiteStatus(contact.toString())
             if (ViewStatus.equals(null)) {
+                Toast.makeText(this@ViewWebStatusActivity, "No Data Found", Toast.LENGTH_SHORT).show()
                 withContext(Dispatchers.Main){
                     Toast.makeText(this@ViewWebStatusActivity, "No Website Found", Toast.LENGTH_SHORT).show()
                 }
