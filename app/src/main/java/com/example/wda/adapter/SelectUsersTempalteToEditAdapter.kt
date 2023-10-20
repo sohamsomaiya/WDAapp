@@ -50,8 +50,9 @@ class SelectUsersTempalteToEditAdapter (private val activity: Activity, private 
 //            }
 
             view.tag = viewHolder
-        } else
+        } else {
             viewHolder = view.tag as ViewHolder
+        }
         val cacheDirPath = this.context.externalCacheDir!!.absolutePath
         val websiteName = objects[position].WebsiteName!!.replace("\\s+".toRegex(), "")
 
@@ -66,32 +67,38 @@ class SelectUsersTempalteToEditAdapter (private val activity: Activity, private 
 
         viewHolder.WebCard.isChecked = (position == selectedPosition)
         view!!.setOnLongClickListener{
-            Toast.makeText(context, "long clicked", Toast.LENGTH_SHORT).show()
-//            val intent= Intent()
-//            intent.action=Intent.ACTION_SEND
-//            intent.putExtra(Intent.EXTRA_TEXT,objects[position].DomainName)
-//            intent.type="text/plain"
-//            activity.startActivity(Intent.createChooser(intent,"Share To:"))
+            val UserWeb="http://${User.ipaddress}/wda/${objects[position].DomainName}"
+            val intent= Intent()
+            intent.action=Intent.ACTION_SEND
+            intent.putExtra(Intent.EXTRA_TEXT,UserWeb)
+            intent.type="text/plain"
+            activity.startActivity(Intent.createChooser(intent,"Share To:"))
             return@setOnLongClickListener true
         }
+        viewHolder.WebCard.isChecked = (position == selectedPosition)
+        viewHolder.WebCard.strokeWidth = if (position == selectedPosition) 2 else 0
+
         viewHolder.WebCard.setOnClickListener {
             if (position != selectedPosition) {
-                if (selectedPosition != -1) {
-                    // Deselect the previously selected card
-                    val previousSelectedView = parent.getChildAt(selectedPosition)
-                    if (previousSelectedView != null) {
-                        val previousSelectedViewHolder =
-                            previousSelectedView.tag as ViewHolder
-                        previousSelectedViewHolder.WebCard.isChecked = false
-                        previousSelectedViewHolder.WebCard.strokeWidth = 0
-                    }
+                // Deselect the previously selected card
+                val previousSelectedView = parent.getChildAt(selectedPosition)
+                if (previousSelectedView != null) {
+                    val previousSelectedViewHolder = previousSelectedView.tag as ViewHolder
+                    previousSelectedViewHolder.WebCard.isChecked = false
+                    previousSelectedViewHolder.WebCard.strokeWidth = 0
                 }
+
                 // Update the selected position to the current card
                 selectedPosition = position
+            } else {
+                // Toggle the selection
+                selectedPosition = -1
             }
-            viewHolder.WebCard.isChecked = true
-            viewHolder.WebCard.strokeWidth = 2
-            val templatePathprefrense =activity.getSharedPreferences("wda", Context.MODE_PRIVATE)
+            // Update the UI for the current card
+            viewHolder.WebCard.isChecked = (position == selectedPosition)
+            viewHolder.WebCard.strokeWidth = if (position == selectedPosition) 2 else 0
+
+        val templatePathprefrense =activity.getSharedPreferences("wda", Context.MODE_PRIVATE)
             val editor = templatePathprefrense.edit()
             editor.putString("WebsiteName",objects[position].WebsiteName)
             editor.putString("TemplatePath","/wda/${objects[position].DomainName}")
@@ -99,11 +106,9 @@ class SelectUsersTempalteToEditAdapter (private val activity: Activity, private 
 
         }
 
-
         SubmitBtn.setOnClickListener {
             if (viewHolder.WebCard.isChecked)
             {
-
                 val intent= Intent(activity, EditWebActivity::class.java)
                 activity.startActivity(intent)
             }else{

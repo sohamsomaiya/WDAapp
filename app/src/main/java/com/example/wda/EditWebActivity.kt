@@ -24,6 +24,7 @@ import com.example.wda.ModalBottomSheet.Companion.primaryVariantColor
 import com.example.wda.ModalBottomSheet.Companion.secondaryColor
 import com.example.wda.ModalBottomSheet.Companion.secondaryVariantColor
 import com.example.wda.ModalBottomSheet.Companion.textColor
+import com.example.wda.ModalBottomSheet.Companion.web
 import com.example.wda.api.User
 import com.example.wda.api.User.Companion.ipaddress
 import com.example.wda.databinding.ActivityEditWebBinding
@@ -43,6 +44,8 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
          var secondaryColor :String? = null
          var secondaryVariantColor :String? = null
          var textColor :String? = null
+            lateinit var web: WebView
+
     }
 
     private lateinit var binding: FragmentBottomBinding
@@ -73,6 +76,8 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
             binding.textFont4.strokeWidth=0
             binding.textFont5.strokeWidth=0
             fontFamily = "Arial, sans-serif"
+            val jsCode = "javascript:document.documentElement.style.setProperty('--font-family', '$fontFamily');"
+            web.loadUrl(jsCode)
         }
         binding.textFont2.setOnClickListener {
             binding.textFont1.isChecked = false
@@ -85,8 +90,9 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
             binding.textFont3.strokeWidth=0
             binding.textFont4.strokeWidth=0
             binding.textFont5.strokeWidth=0
-            fontFamily = "Consolas"
-
+            fontFamily = "Consolas , monospace"
+            val jsCode = "javascript:document.documentElement.style.setProperty('--font-family', '$fontFamily');"
+            web.loadUrl(jsCode)
         }
         binding.textFont3.setOnClickListener {
             binding.textFont1.isChecked = false
@@ -100,6 +106,8 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
             binding.textFont4.strokeWidth=0
             binding.textFont5.strokeWidth=0
             fontFamily = "Gill Sans"
+            val jsCode = "javascript:document.documentElement.style.setProperty('--font-family', '$fontFamily');"
+            web.loadUrl(jsCode)
         }
         binding.textFont4.setOnClickListener {
             binding.textFont1.isChecked = false
@@ -112,7 +120,9 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
             binding.textFont3.strokeWidth=0
             binding.textFont4.strokeWidth=3
             binding.textFont5.strokeWidth=0
-            fontFamily = "Verdana, Tahoma, sans-serif"
+            fontFamily = "Verdana, Geneva, sans-serif"
+            val jsCode = "javascript:document.documentElement.style.setProperty('--font-family', '$fontFamily');"
+            web.loadUrl(jsCode)
         }
         binding.textFont5.setOnClickListener {
             binding.textFont1.isChecked = false
@@ -125,7 +135,9 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
             binding.textFont3.strokeWidth=0
             binding.textFont4.strokeWidth=0
             binding.textFont5.strokeWidth=3
-            fontFamily = "Calisto MT,Bookman Old Style,Bookman,serif"
+            fontFamily = "Calisto MT,serif"
+            val jsCode = "javascript:document.documentElement.style.setProperty('--font-family', '$fontFamily');"
+            web.loadUrl(jsCode)
         }
         // Handle interactions or add more views as needed
         binding.closeButton.setOnClickListener {
@@ -165,13 +177,17 @@ class ModalBottomSheet2 : BottomSheetDialogFragment() {
             binding.colorPalet3.strokeWidth=0
             binding.colorPalet4.strokeWidth=0
             binding.colorPalet5.strokeWidth=0
-            primaryColor = "#000000"
-            primaryVariantColor = R.color.RoseRed.toString()
-            secondaryColor  = R.color.RoseQuartz2.toString()
-            secondaryVariantColor = R.color.Pauce.toString()
-            textColor=R.color.black.toString()
-                Toast.makeText(context, primaryColor, Toast.LENGTH_SHORT).show()
-
+            primaryColor = "#F9CCD3"
+            primaryVariantColor = "#AA1945"
+            secondaryColor  = "#F1CED4"
+            secondaryVariantColor = "#391306"
+            textColor="#000000"
+            val jsCode = "javascript:document.documentElement.style.setProperty('--primary-color', '$primaryColor');" +
+                    "javascript:document.documentElement.style.setProperty('--primary-variant-color', '$primaryVariantColor');" +
+                    "javascript:document.documentElement.style.setProperty('--secondary-color', '$secondaryColor');" +
+                    "javascript:document.documentElement.style.setProperty('--secondary-variant-color', '$secondaryVariantColor');" +
+                    "javascript:document.documentElement.style.setProperty('--text-color', '$textColor');"
+            web.loadUrl(jsCode)
         }
         binding.colorPalet2.setOnClickListener {
             binding.colorPalet1.isChecked = false
@@ -184,11 +200,18 @@ class ModalBottomSheet2 : BottomSheetDialogFragment() {
             binding.colorPalet3.strokeWidth=0
             binding.colorPalet4.strokeWidth=0
             binding.colorPalet5.strokeWidth=0
-            primaryColor = R.color.Tan.toString()
-            primaryVariantColor = R.color.BlueGray.toString()
-            secondaryColor  = R.color.Khakhi.toString()
-            secondaryVariantColor = R.color.Charcoal.toString()
-            textColor=R.color.black.toString()
+            primaryColor = "#AC8E69"
+            primaryVariantColor = "#5C8491"
+            secondaryColor  = "#C0B3A0"
+            secondaryVariantColor = "#35454C"
+            textColor="#000000"
+
+            val jsCode = "javascript:document.documentElement.style.setProperty('--primary-color', '$primaryColor');" +
+                    "javascript:document.documentElement.style.setProperty('--primary-variant-color', '$primaryVariantColor');" +
+                    "javascript:document.documentElement.style.setProperty('--secondary-color', '$secondaryColor');" +
+                    "javascript:document.documentElement.style.setProperty('--secondary-variant-color', '$secondaryVariantColor');" +
+                    "javascript:document.documentElement.style.setProperty('--text-color', '$textColor');"
+            web.loadUrl(jsCode)
         }
         binding.colorPalet3.setOnClickListener {
             binding.colorPalet1.isChecked = false
@@ -201,11 +224,17 @@ class ModalBottomSheet2 : BottomSheetDialogFragment() {
             binding.colorPalet3.strokeWidth=3
             binding.colorPalet4.strokeWidth=0
             binding.colorPalet5.strokeWidth=0
-            primaryColor = R.color.Carafe.toString()
-            primaryVariantColor = R.color.Fuchsia.toString()
-            secondaryColor  = R.color.Periwinkle.toString()
-            secondaryVariantColor = R.color.Cream.toString()
-            textColor=R.color.black.toString()
+            primaryColor = "#591F20"
+            primaryVariantColor = "#D5245F"
+            secondaryColor  = "#989FC0"
+            secondaryVariantColor = "#EEE5E0"
+            textColor="#000000"
+            val jsCode = "javascript:document.documentElement.style.setProperty('--primary-color', '$primaryColor');" +
+                    "javascript:document.documentElement.style.setProperty('--primary-variant-color', '$primaryVariantColor');" +
+                    "javascript:document.documentElement.style.setProperty('--secondary-color', '$secondaryColor');" +
+                    "javascript:document.documentElement.style.setProperty('--secondary-variant-color', '$secondaryVariantColor');" +
+                    "javascript:document.documentElement.style.setProperty('--text-color', '$textColor');"
+            web.loadUrl(jsCode)
         }
         binding.colorPalet4.setOnClickListener {
             binding.colorPalet1.isChecked = false
@@ -218,11 +247,18 @@ class ModalBottomSheet2 : BottomSheetDialogFragment() {
             binding.colorPalet3.strokeWidth=0
             binding.colorPalet4.strokeWidth=3
             binding.colorPalet5.strokeWidth=0
-            primaryColor = R.color.DarkTeal.toString()
-            primaryVariantColor = R.color.JaddedTeal.toString()
-            secondaryColor  = R.color.FutureTeal.toString()
-            secondaryVariantColor = R.color.Roux.toString()
-            textColor=R.color.black.toString()
+            primaryColor = "#004C50"
+            primaryVariantColor = "#00939C"
+            secondaryColor  = "#10ABB4"
+            secondaryVariantColor = "#9C3E00"
+            textColor="#000000"
+
+            val jsCode = "javascript:document.documentElement.style.setProperty('--primary-color', '$primaryColor');" +
+                    "javascript:document.documentElement.style.setProperty('--primary-variant-color', '$primaryVariantColor');" +
+                    "javascript:document.documentElement.style.setProperty('--secondary-color', '$secondaryColor');" +
+                    "javascript:document.documentElement.style.setProperty('--secondary-variant-color', '$secondaryVariantColor');" +
+                    "javascript:document.documentElement.style.setProperty('--text-color', '$textColor');"
+            web.loadUrl(jsCode)
         }
         binding.colorPalet5.setOnClickListener {
             binding.colorPalet1.isChecked = false
@@ -235,11 +271,17 @@ class ModalBottomSheet2 : BottomSheetDialogFragment() {
             binding.colorPalet3.strokeWidth=0
             binding.colorPalet4.strokeWidth=0
             binding.colorPalet5.strokeWidth=3
-            primaryColor = R.color.Whale.toString()
-            primaryVariantColor = R.color.DeepOrange.toString()
-            secondaryColor  = R.color.Beige.toString()
-            secondaryVariantColor = R.color.Amber.toString()
-            textColor=R.color.black.toString()
+            primaryColor = "#024959"
+            primaryVariantColor = "#BF5B04"
+            secondaryColor  = "#D9B29C"
+            secondaryVariantColor = "#A66249"
+            textColor="#000000"
+            val jsCode = "javascript:document.documentElement.style.setProperty('--primary-color', '$primaryColor');" +
+                    "javascript:document.documentElement.style.setProperty('--primary-variant-color', '$primaryVariantColor');" +
+                    "javascript:document.documentElement.style.setProperty('--secondary-color', '$secondaryColor');" +
+                    "javascript:document.documentElement.style.setProperty('--secondary-variant-color', '$secondaryVariantColor');" +
+                    "javascript:document.documentElement.style.setProperty('--text-color', '$textColor');"
+            web.loadUrl(jsCode)
         }
         // Handle interactions or add more views as needed
         binding.closeButton.setOnClickListener {
@@ -252,7 +294,7 @@ class ModalBottomSheet2 : BottomSheetDialogFragment() {
 
 class EditWebActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditWebBinding
-    private lateinit var web: WebView
+
     private var imageUri: Uri? = null
     private lateinit var SaveBtn: Button
     private lateinit var CancelBtn: Button
@@ -260,7 +302,6 @@ class EditWebActivity : AppCompatActivity() {
     companion object {
         private var touchedImageId: String? = null
         private const val FILE_PICKER_REQUEST_CODE = 1
-
     }
 
     @SuppressLint("JavascriptInterface")
@@ -361,22 +402,24 @@ class EditWebActivity : AppCompatActivity() {
                                     UTAN.toString(),
                                     " "
                                 )
-                                DomainName = message.getString("domainName")
-                                val sp = getSharedPreferences("wda", MODE_PRIVATE)
-                                val editor = sp.edit()
-                                editor.putString("TemplatePath", DomainName)
-                                editor.apply()
-                                if(!message.getBoolean("success")){
-                                    Toast.makeText(this@EditWebActivity, message.getString("message"), Toast.LENGTH_SHORT).show()
-                                }else{
-                                    Toast.makeText(this@EditWebActivity, "Website Registered", Toast.LENGTH_SHORT).show()
+                                withContext(Dispatchers.Main){
+                                    if(!message.getBoolean("success")){
+                                        Toast.makeText(this@EditWebActivity, message.getString("message"), Toast.LENGTH_SHORT).show()
+                                    }else{
+                                        Toast.makeText(this@EditWebActivity, "Website Registered", Toast.LENGTH_SHORT).show()
+                                        DomainName = "/wda/"+message.getString("domainName").replace("\\s+".toRegex(), "")+".html"
+                                        val sp = getSharedPreferences("wda", MODE_PRIVATE)
+                                        val editor = sp.edit()
+                                        editor.putString("TemplatePath", DomainName)
+                                        editor.apply()
+                                        this@EditWebActivity.recreate()
+                                    }
                                 }
 //
                                 //editor.putString("Domain",Uname.toString())
 
 //                            User.websiteRegister("65133ab2812fd50cec6e1760","Automobile",base64Html,"Organisational","16-09-2023","6484984894","4684646354","6846164836")
                             }
-                            this@EditWebActivity.recreate()
                         }
                     }
                 } else {
@@ -392,13 +435,15 @@ class EditWebActivity : AppCompatActivity() {
                             val base64Html = Base64.encodeToString(compressedHtml, Base64.DEFAULT)
                             withContext(Dispatchers.IO) {
                                 val message=User.updateWebsite(base64Html, WebsiteName.toString())
-                                if (!message.getBoolean("success")){
-                                    Toast.makeText(this@EditWebActivity, message.getString("message"), Toast.LENGTH_SHORT).show()
-                                }else{
-                                    Toast.makeText(this@EditWebActivity, "Website Updated", Toast.LENGTH_SHORT).show()
+                                withContext(Dispatchers.Main){
+                                    if (!message.getBoolean("success")){
+                                        Toast.makeText(this@EditWebActivity, message.getString("message"), Toast.LENGTH_SHORT).show()
+                                    }else{
+                                        Toast.makeText(this@EditWebActivity, "Website Updated", Toast.LENGTH_SHORT).show()
+                                        this@EditWebActivity.recreate()
+                                    }
                                 }
                             }
-                            this@EditWebActivity.recreate()
                         }
                     }
                 }
