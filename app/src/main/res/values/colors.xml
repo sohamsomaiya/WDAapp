@@ -8,9 +8,9 @@
     <color name="black">#000000</color>
     <color name="blue">#1A237E</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="gray">#BDACA9A9</color>
+    <color name="gray">#9C9C9C</color>
     <color name="transparent">#00FFFFFF</color>
-    <color name="transparentGray">#FFFFFF</color>
+    <color name="transparentGray">#BDACA9A9</color>
     <color name="RoseQuartz">#F9CCD3</color>
     <color name="RoseRed">#AA1945</color>
     <color name="RoseQuartz2">#F1CED4</color>

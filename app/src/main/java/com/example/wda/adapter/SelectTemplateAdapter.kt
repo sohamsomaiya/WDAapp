@@ -84,6 +84,7 @@ class SelectTemplateAdapter(private val activity: Activity, private val template
 
         submitTempBtn.setOnClickListener {
             val intent=Intent(activity,EditWebActivity::class.java)
+            intent.putExtra("Task","Register")
             activity.startActivity(intent)
         }
         return view!!

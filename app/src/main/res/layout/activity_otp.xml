@@ -39,6 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/TxtOtp"
         app:layout_constraintStart_toStartOf="parent"
         app:autoSizeMinTextSize="18sp"
+        android:textColor="@color/gray"
         app:autoSizeMaxTextSize="100sp"
         android:fontFamily="@font/inter"
         app:autoSizeStepGranularity="2sp"

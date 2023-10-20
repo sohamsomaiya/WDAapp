@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -19,8 +20,8 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var CreateWebCard:CircularRevealCardView
     private lateinit var EditWebCard:CircularRevealCardView
     private lateinit var ViewSiteStatusCard:CircularRevealCardView
-    private lateinit var LanguageCard:CircularRevealCardView
     private lateinit var QueryCard:CircularRevealCardView
+    private lateinit var WelcomeText:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,8 +29,14 @@ class HomeActivity : AppCompatActivity() {
         CreateWebCard=findViewById(R.id.CreateWebCard)
         EditWebCard=findViewById(R.id.EditWebCard)
         ViewSiteStatusCard=findViewById(R.id.ViewSiteStatusCard)
-        LanguageCard=findViewById(R.id.LanguageCard)
         QueryCard=findViewById(R.id.QueryCard)
+
+        WelcomeText=findViewById(R.id.WelcomeTxt)
+        val sp =getSharedPreferences("wda", MODE_PRIVATE)
+        val UserName= sp.getString("Username","")
+        Toast.makeText(this, UserName.toString(), Toast.LENGTH_SHORT).show()
+
+        WelcomeText.setText("Welcome \n $UserName")
 
         CreateWebCard.setOnClickListener {
             val intent = Intent(this@HomeActivity,TypeActivity::class.java)

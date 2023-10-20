@@ -23,7 +23,8 @@ class ViewWebStatusActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_web_status)
         ViewStatusGrid=findViewById(R.id.ViewStatusGrid)
-
+        supportActionBar?.title="Website Status"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val prefrenceStatus = getSharedPreferences("wda", MODE_PRIVATE)
         val contact = prefrenceStatus.getString("contact", "")
 

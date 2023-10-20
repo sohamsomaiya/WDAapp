@@ -7,10 +7,7 @@ import android.content.Intent
 import android.text.TextUtils.replace
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.core.net.toUri
 import com.example.wda.EditWebActivity
 import com.example.wda.R
@@ -59,8 +56,8 @@ class SelectUsersTempalteToEditAdapter (private val activity: Activity, private 
         val websiteName = objects[position].WebsiteName!!.replace("\\s+".toRegex(), "")
 
         val imageDirPath = "${cacheDirPath}/${websiteName}/logo.jpg"
-        viewHolder.WebsiteName.text = "Webiste Name:- "+objects[position].WebsiteName
-        viewHolder.WebsiteType.text = "Webiste Type:- "+objects[position].WebsiteType
+        viewHolder.WebsiteName.text = "Website Name:- "+objects[position].WebsiteName
+        viewHolder.WebsiteType.text = "Website Type:- "+objects[position].WebsiteType
         viewHolder.DomainName.text = "Domain Name:- "+objects[position].DomainName
         viewHolder.DateOfIncorporation.text = "DOI :- "+objects[position].DateOfIncorporation
         viewHolder.CorporateIdentificationNo.text = "COI:- "+objects[position].CorporateIdentificationNo
@@ -68,6 +65,15 @@ class SelectUsersTempalteToEditAdapter (private val activity: Activity, private 
         viewHolder.LogoImage.setImageURI(imageDirPath.toUri())
 
         viewHolder.WebCard.isChecked = (position == selectedPosition)
+        view!!.setOnLongClickListener{
+            Toast.makeText(context, "long clicked", Toast.LENGTH_SHORT).show()
+//            val intent= Intent()
+//            intent.action=Intent.ACTION_SEND
+//            intent.putExtra(Intent.EXTRA_TEXT,objects[position].DomainName)
+//            intent.type="text/plain"
+//            activity.startActivity(Intent.createChooser(intent,"Share To:"))
+            return@setOnLongClickListener true
+        }
         viewHolder.WebCard.setOnClickListener {
             if (position != selectedPosition) {
                 if (selectedPosition != -1) {
@@ -87,12 +93,22 @@ class SelectUsersTempalteToEditAdapter (private val activity: Activity, private 
             viewHolder.WebCard.strokeWidth = 2
             val templatePathprefrense =activity.getSharedPreferences("wda", Context.MODE_PRIVATE)
             val editor = templatePathprefrense.edit()
+            editor.putString("WebsiteName",objects[position].WebsiteName)
             editor.putString("TemplatePath","/wda/${objects[position].DomainName}")
             editor.apply()
+
         }
+
+
         SubmitBtn.setOnClickListener {
-            val intent= Intent(activity, EditWebActivity::class.java)
-            activity.startActivity(intent)
+            if (viewHolder.WebCard.isChecked)
+            {
+
+                val intent= Intent(activity, EditWebActivity::class.java)
+                activity.startActivity(intent)
+            }else{
+                Toast.makeText(context, "Please Select a Website to edit", Toast.LENGTH_SHORT).show()
+            }
         }
         return view!!
     }

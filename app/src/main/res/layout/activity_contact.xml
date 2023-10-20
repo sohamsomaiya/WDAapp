@@ -43,6 +43,7 @@
         android:text="@string/enter_your_mobile_number_to_get_on_with_us"
         app:layout_constraintTop_toBottomOf="@+id/TxtContact"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/gray"
         app:autoSizeMinTextSize="18sp"
         app:autoSizeMaxTextSize="100sp"
         app:autoSizeStepGranularity="2sp"

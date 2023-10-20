@@ -17,7 +17,7 @@ import java.net.URL
 class User : AppCompatActivity() {
 
     companion object{
-        val ipaddress="192.168.0.15:8000"
+            val ipaddress="192.168.50.253:8000"
 
         fun sendOtp(Name : String,Type : String,ContactNo : String): JSONObject {
             val jsonLogin=JSONObject()
@@ -567,7 +567,7 @@ class User : AppCompatActivity() {
         fun updateWebsite(WebsiteCode: String, WebsiteName: String): JSONObject {
 
             val WebsiteJson = JSONObject()
-            WebsiteJson.put("updateWebsiteCode", WebsiteCode)
+            WebsiteJson.put("updatedWebsiteCode", WebsiteCode)
             WebsiteJson.put("webSiteName", WebsiteName)
 
             val jsonWebsiteResponse = WebsiteJson.toString()
@@ -593,6 +593,27 @@ class User : AppCompatActivity() {
             }
 
             return null!!
+        }
+
+        fun validateDomain(webSiteName: String): JSONObject {
+            val url = URL("http://${ipaddress}/wda/user/validedUser/${webSiteName}")
+            val httpConnection = (url.openConnection() as HttpURLConnection).apply {
+                doInput = true
+                requestMethod = "GET"
+                setChunkedStreamingMode(0)
+            }
+            try {
+                if (httpConnection.responseCode == HttpURLConnection.HTTP_OK) {
+                    val DomainReader = httpConnection.inputStream.bufferedReader()
+                    val responseDomainString = JSONObject(DomainReader.readText())
+                    return responseDomainString
+                }
+
+            }catch (ex : Exception){
+                Log.e("Validation of Domain Error",ex.message!!)
+            }
+            return null!!
+
         }
 
 

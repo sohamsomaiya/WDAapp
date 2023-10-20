@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">WDA</string>
     <string name="what_is_the_purpose">What Is The \nPurpose ?</string>
     <string name="let_us_personalize_your_experience">Let Us Personalize Your \nExperience</string>
@@ -19,7 +19,7 @@
     <string name="verify">Verify</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="resend_otp">Resend OTP</string>
-    <string name="didnt_recived_your_otp_click_here">Didnt Received Your OTP ? Click Here</string>
+    <string name="didnt_recived_your_otp_click_here">Didn\'t Received Your OTP ? Click Here</string>
     <string name="_0">0</string>
     <string name="login">Login</string>
     <string name="enter_your_credentials_to_login">Enter Your Credentials To \nLogin</string>
@@ -29,9 +29,9 @@
     <string name="close">Close</string>
     <string name="language">Language</string>
     <string name="welcome_nuser">Welcome!! \nUser</string>
-    <string name="build_a_nwebsite">Build a \nwebsite</string>
+    <string name="build_a_nwebsite">Build \nWebsite</string>
     <string name="edit_nwebsite">Edit \nWebsite</string>
-    <string name="view_site_nstatus">view site \nstatus</string>
+    <string name="view_site_nstatus">View Site \nStatus</string>
     <string name="query">Query</string>
     <string name="get_a_website_ready_nin_few_steps">Get A Website Ready \nIn Few Steps</string>
     <string name="create_your_website">Create Your Website</string>
@@ -42,7 +42,7 @@
     <string name="enter_date_of_incorporation">Enter Date Of Incorporation</string>
     <string name="corporate_identification_number">Corporate Identification Number</string>
     <string name="tax_deduction_account_number">TAX Deduction Account Number</string>
-    <string name="enter_your_details_to_get_a_npersonalize_experience">Enter Your Details To Get A \nPersonalize Experience.</string>
+    <string name="enter_your_details_to_get_a_npersonalize_experience" tools:ignore="MissingTranslation">Enter Your Details To Get A \nPersonalize Experience.</string>
 
     <string-array name="Query">
         <item>text 1</item>
