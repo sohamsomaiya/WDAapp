@@ -112,8 +112,6 @@ class CreateWebActivity : AppCompatActivity() {
                     }
                 }
             }
-            val intent=Intent(this@CreateWebActivity,TemplateSelectionActivity::class.java)
-            startActivity(intent)
 
         }
     }
