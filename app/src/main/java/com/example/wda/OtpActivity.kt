@@ -30,6 +30,7 @@ class OtpActivity : AppCompatActivity() {
     //private lateinit var Resend : Button
     private lateinit var OtpText: TextView
     private lateinit var SubTextOtp : TextView
+    private lateinit var ResendOtpTxt : TextView
     private lateinit var guidelineOtp : Guideline
     private lateinit var ConstraintLayoutOtp : ConstraintLayout
 
@@ -41,19 +42,49 @@ class OtpActivity : AppCompatActivity() {
 
 
 //        supportActionBar?.hide()
-        actionBar?.setBackgroundDrawable(null)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+            supportActionBar?.title=""
         Otp1=findViewById(R.id.OtpTxt)
         OtpContinue=findViewById(R.id.ContinueOtp)
 //        Resend=findViewById(R.id.ResendOtpTxt)
         OtpText=findViewById(R.id.TxtOtp)
         SubTextOtp=findViewById(R.id.SubTxtOtp)
+        ResendOtpTxt=findViewById(R.id.ResendOtpTxt)
 
         guidelineOtp = findViewById(R.id.guidelineOtp)
         ConstraintLayoutOtp = findViewById(R.id.ConstraintLayoutOtp)
+        val Spref=getSharedPreferences("wda", MODE_PRIVATE)
+        val Username=Spref.getString("name","")
+        val Type= Spref.getString("type","")
+        val ContactNo = Spref.getString("contact","")
 
+        ResendOtpTxt.setOnClickListener {
+
+            CoroutineScope(Dispatchers.IO).launch {
+                val messege = User.sendOtp(Username!!, Type!!, ContactNo!!)
+                withContext(Dispatchers.Main) {
+                    if (!messege.getBoolean("success")) {
+                        Toast.makeText(
+                            this@OtpActivity,
+                            messege.getString("message"),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    } else {
+                        val sp = getSharedPreferences("wda", MODE_PRIVATE)
+                        val editor = sp.edit()
+                        editor.putString("name", Username)
+                        editor.putString("type", Type)
+                        editor.putString("contact", ContactNo)
+                        editor.apply()
+
+                        val intent = Intent(this@OtpActivity, ContactActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+            }
+        }
         ConstraintLayoutOtp.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
                 val rect = Rect()
@@ -62,7 +93,7 @@ class OtpActivity : AppCompatActivity() {
                 val keypadHeight = screenHeight - rect.bottom
 
                 if (keypadHeight > screenHeight * 0.15) {
-                    guidelineOtp.setGuidelinePercent(0.7f)
+                    guidelineOtp.setGuidelinePercent(0.67f)
                 } else {
                     guidelineOtp.setGuidelinePercent(1F)
                 }

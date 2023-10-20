@@ -38,6 +38,8 @@ class QueryActivity : AppCompatActivity() {
         QuerySubmitBtn = findViewById(R.id.QuerySubmitBtn)
         ViewQueryGridView = findViewById(R.id.ViewQueryGridView)
         var ID=""
+        supportActionBar?.title="Query"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val prefrenceQuery = getSharedPreferences("wda", MODE_PRIVATE)
         val userid = prefrenceQuery.getString("userId", "")
         val contact = prefrenceQuery.getString("contact", "")

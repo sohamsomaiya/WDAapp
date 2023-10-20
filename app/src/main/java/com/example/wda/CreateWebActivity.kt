@@ -11,9 +11,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Guideline
+import com.example.wda.api.User
 import com.google.android.material.datepicker.MaterialTextInputPicker
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class CreateWebActivity : AppCompatActivity() {
     private lateinit var EnterDetailsSubmitbtn: Button
@@ -26,11 +31,9 @@ class CreateWebActivity : AppCompatActivity() {
     private lateinit var DOI: TextInputLayout
     private lateinit var COI: TextInputLayout
     private lateinit var TAN: TextInputLayout
-    private lateinit var DomainNameLayout: TextInputLayout
     private lateinit var DOIInput: TextInputEditText
     private lateinit var TANInput: TextInputEditText
     private lateinit var COIInput: TextInputEditText
-    private lateinit var DomainNameInput: TextInputEditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,8 +56,6 @@ class CreateWebActivity : AppCompatActivity() {
         TANInput=findViewById(R.id.TANInput)
         DOIInput=findViewById(R.id.DOIInput)
         COIInput=findViewById(R.id.COIInput)
-        DomainNameLayout=findViewById(R.id.DomainNameLayout)
-        DomainNameInput=findViewById(R.id.DomainNameTxt)
         EnterDetailsSubmitbtn=findViewById(R.id.EnterDetailsSubmitBtn)
         guideline=findViewById(R.id.EnterDetailsGuideline)
         constraintLayout=findViewById(R.id.LayoutEnterDetails)
@@ -81,9 +82,9 @@ class CreateWebActivity : AppCompatActivity() {
                 val keypadHeight = screenHeight - rect.bottom
 
                 if (keypadHeight > screenHeight * 0.15) {
-                    guideline.setGuidelinePercent(0.75f)
+                    guideline.setGuidelinePercent(0.6f)
                 } else {
-                    guideline.setGuidelinePercent(0.9F)
+                    guideline.setGuidelinePercent(0.8F)
                 }
             }
         })
@@ -98,6 +99,19 @@ class CreateWebActivity : AppCompatActivity() {
             edit.putString("UCOI",COIInput.text.toString())
             edit.putString("UTAN",TANInput.text.toString())
             edit.apply()
+            CoroutineScope(Dispatchers.IO).launch {
+                val message= User.validateDomain(EnterDetailsTxtInput.text.toString())
+                withContext(Dispatchers.Main){
+                    if (message.getBoolean("success")){
+                        Toast.makeText(this@CreateWebActivity, message.getString("message"), Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        val intent=Intent(this@CreateWebActivity,TemplateSelectionActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+            }
             val intent=Intent(this@CreateWebActivity,TemplateSelectionActivity::class.java)
             startActivity(intent)
 

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:scaleType="fitEnd"
+        android:scaleType="fitCenter"
         android:src="@drawable/filldetails" />
 
     <TextView
@@ -45,7 +45,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/EnterDetailstxtLayout"
-        android:hint="@string/enter_your_name_edit_text"
+        android:hint="Enter Your Website Name"
         android:layout_width="0sp"
         app:layout_constraintWidth_percent="0.8"
         android:layout_height="wrap_content"
@@ -132,28 +132,7 @@
             />
 
     </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/DomainNameLayout"
-        android:hint="Domain Name"
-        android:layout_width="0sp"
-        app:layout_constraintWidth_percent="0.8"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/TAN"
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/DomainNameTxt"
-            android:layout_width="match_parent"
-            android:maxLines="1"
-            android:inputType="text"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/EnterDetailsSubmitBtn"
@@ -166,7 +145,6 @@
         android:paddingBottom="10sp"
         android:fitsSystemWindows="true"
         app:layout_constraintBottom_toBottomOf="@+id/EnterDetailsGuideline"
-        app:layout_constraintTop_toBottomOf="@id/DomainNameLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />

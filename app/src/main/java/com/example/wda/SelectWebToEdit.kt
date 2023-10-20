@@ -24,10 +24,17 @@ class SelectWebToEdit : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_web_to_edit)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title="Select Website To Edit"
         SelectToEditGrid = findViewById(R.id.SelectToEditGrid)
+
         SelectToEditSubmit = findViewById(R.id.SelectToEditSubmit)
             val SelectEditPrefrence = getSharedPreferences("wda", MODE_PRIVATE)
             val UId = SelectEditPrefrence.getString("userId","")
+//            val tpath = SelectEditPrefrence.getString("TemplatePath","")
+            val editor = SelectEditPrefrence.edit()
+            editor.remove("TemplatePath").apply()
+
         CoroutineScope(Dispatchers.IO).launch {
             val message = User.getWebsiteDetails(UId.toString())
             var i = 0
