@@ -104,12 +104,11 @@ class SetPasswordActivity : AppCompatActivity() {
                                 Toast.LENGTH_LONG
                             ).show()
                         } else {
-                            val sp = getSharedPreferences("wda", MODE_PRIVATE)
-                            val editor = sp.edit()
-                            editor.putString("contact", ContactNo)
-                            editor.putString("password", password)
-                            editor.apply()
-
+                            withContext(Dispatchers.IO){
+                                val sp = getSharedPreferences("wda", MODE_PRIVATE)
+                                val editor = sp.edit()
+                                editor.clear().apply()
+                            }
                             val intent = Intent(this@SetPasswordActivity, LoginActivity::class.java)
                             startActivity(intent)
                             finish()
