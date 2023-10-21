@@ -92,28 +92,29 @@ class CreateWebActivity : AppCompatActivity() {
         EnterDetailsSubmitbtn.setOnClickListener {
             Toast.makeText(this@CreateWebActivity, EnterDetailsTxtInput.text.toString(), Toast.LENGTH_SHORT).show()
 
-            val CreateWebPrefrense = getSharedPreferences("wda", MODE_PRIVATE)
-            val edit= CreateWebPrefrense.edit()
-            edit.putString("UName", EnterDetailsTxtInput.text.toString())
-            edit.putString("UDOI",DOIInput.text.toString())
-            edit.putString("UCOI",COIInput.text.toString())
-            edit.putString("UTAN",TANInput.text.toString())
-            edit.apply()
             CoroutineScope(Dispatchers.IO).launch {
                 val message= User.validateDomain(EnterDetailsTxtInput.text.toString())
                 withContext(Dispatchers.Main){
-                    if (message.getBoolean("success")){
+                    if (message.getBoolean("success") && EnterDetailsTxtInput.text.toString()=="" && DOIInput.text.toString()=="" && COIInput.text.toString()=="" && TANInput.text.toString()==""){
                         Toast.makeText(this@CreateWebActivity, message.getString("message"), Toast.LENGTH_SHORT).show()
                     }
                     else{
+                        val CreateWebPrefrense = getSharedPreferences("wda", MODE_PRIVATE)
+                        val editor = CreateWebPrefrense.edit()
+                        editor.putString("UName", EnterDetailsTxtInput.text.toString())
+                        editor.putString("UDOI",DOIInput.text.toString())
+                        editor.putString("UCOI",COIInput.text.toString())
+                        editor.putString("UTAN",TANInput.text.toString())
+                        editor.apply()
+
                         val intent=Intent(this@CreateWebActivity,TemplateSelectionActivity::class.java)
                         startActivity(intent)
-                        finish()
+                       // finish()
                     }
                 }
             }
-            val intent=Intent(this@CreateWebActivity,TemplateSelectionActivity::class.java)
-            startActivity(intent)
+//            val intent=Intent(this@CreateWebActivity,TemplateSelectionActivity::class.java)
+//            startActivity(intent)
 
         }
     }

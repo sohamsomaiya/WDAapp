@@ -63,10 +63,7 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
-        val sh=getSharedPreferences("wda", MODE_PRIVATE)
 
-        //val ContactNo = sh.getString("contact","")
-        //val password = sh.getString("password","")
         Password.addTextChangedListener {
 
             if (!Password.text.toString().contains(Regex("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=])(?=\\S+\$).{8,}\$")))
@@ -93,13 +90,9 @@ class LoginActivity : AppCompatActivity() {
             }else{
                 CoroutineScope(Dispatchers.IO).launch {
                     val messege = User.login(MobileNumber.text.toString(), Password.text.toString(),"user")
+
                     withContext(Dispatchers.Main) {
                         if (messege.getBoolean("success")) {
-//                            Toast.makeText(
-//                                this@LoginActivity,
-//                                "LoggedIN",
-//                                Toast.LENGTH_SHORT
-//                            ).show()
                             val sp = getSharedPreferences("wda", MODE_PRIVATE)
                             val editor=sp.edit()
                             editor.putString("userId",messege.getString("userID"))

@@ -10,7 +10,7 @@ import com.google.android.material.card.MaterialCardView
 class TypeActivity : AppCompatActivity() {
     private lateinit var cardIndividual: MaterialCardView
     private lateinit var cardOrganization: MaterialCardView
-    private lateinit var selectedCard:String
+    private var selectedCard:String = ""
     private lateinit var TypeSubmitBtn:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,13 +37,20 @@ class TypeActivity : AppCompatActivity() {
             selectedCard="Organization"
         }
         TypeSubmitBtn.setOnClickListener {
-            val webType = getSharedPreferences("wda", MODE_PRIVATE)
-            val editor=webType.edit()
-            editor.putString("WebsiteType",selectedCard)
-            editor.apply()
+
            // Toast.makeText(this, selectedCard, Toast.LENGTH_SHORT).show()
-            var intent = Intent(this@TypeActivity,CreateWebActivity::class.java)
-            startActivity(intent)
+            if(selectedCard==""){
+                Toast.makeText(this, "Please choose the type of Website", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                val webType = getSharedPreferences("wda", MODE_PRIVATE)
+                val editor=webType.edit()
+                editor.putString("WebsiteType",selectedCard)
+                editor.apply()
+
+                var intent = Intent(this@TypeActivity,CreateWebActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 }
