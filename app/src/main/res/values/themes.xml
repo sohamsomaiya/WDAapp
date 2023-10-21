@@ -5,13 +5,14 @@
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="android:fontFamily">@font/inter</item>
         <!-- Secondary brand color. -->
         <item name="android:windowBackground">@color/white</item>
         <item name="colorSecondary">@color/blue</item>
         <item name="colorSecondaryVariant">@color/blue</item>
         <item name="colorOnSecondary">@color/blue</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <item name="android:statusBarColor" >@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/blue</item>
@@ -25,12 +26,14 @@
         <item name="background">@color/transparent</item>
         <item name="actionMenuTextColor">@color/blue</item>
         <item name="android:background">@color/white</item>
+        <item name="android:fontFamily">@font/inter</item>
         <item name="titleTextStyle">@style/styleActionBarTitleText</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
     </style>
     <style name="styleActionBarTitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/blue</item>
         <item name="textFillColor">@color/blue</item>
+        <item name="android:fontFamily">@font/inter</item>
         <item name="actionMenuTextColor">@color/blue</item>
         <item name="titleTextColor">@color/white</item>
     </style>

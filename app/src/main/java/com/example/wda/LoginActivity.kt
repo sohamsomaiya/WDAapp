@@ -27,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var Continue : Button
     private lateinit var LoginText: TextView
     private lateinit var SubTextLogin : TextView
+    private lateinit var CreateAccTxt : TextView
     private lateinit var guidelineLogin : Guideline
     private lateinit var ConstraintLayoutLogin : ConstraintLayout
 
@@ -44,6 +45,7 @@ class LoginActivity : AppCompatActivity() {
         Continue=findViewById(R.id.ContinueLogin)
         LoginText=findViewById(R.id.TxtLogin)
         SubTextLogin=findViewById(R.id.SubTxtLogin)
+        CreateAccTxt=findViewById(R.id.CreateAccTxt)
 
         guidelineLogin = findViewById(R.id.guidelineLogin)
         ConstraintLayoutLogin = findViewById(R.id.ConstraintLayoutLogin)
@@ -72,6 +74,11 @@ class LoginActivity : AppCompatActivity() {
 //                Toast.makeText(this, "password must contain 1 lower case letter [a-z] ,\n1 upper case letter [A-Z] ,\n1 numeric character [0-9]1 \nspecial character: ~`!@#\$%^&*()-_+={}[]|\\;:\"<>,./?", Toast.LENGTH_SHORT).show()
             }
 
+        }
+        CreateAccTxt.setOnClickListener {
+            val intent =Intent(this@LoginActivity,SignupActivity::class.java)
+            startActivity(intent)
+            finish()
         }
         Continue.setOnClickListener {
 

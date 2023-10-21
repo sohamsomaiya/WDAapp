@@ -3,6 +3,7 @@ package com.example.wda
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,7 +17,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Guideline
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
 
 class NameActivity : AppCompatActivity() {
         private lateinit var Name : EditText
@@ -32,8 +33,14 @@ class NameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         // Set the app's locale based on the saved language preference
         setContentView(R.layout.activity_name)
-        val selectedLanguage = LocaleHelper.getSelectedLanguage(this)
-        LocaleHelper.setLocale(this, selectedLanguage)
+
+//        CoroutineScope(Dispatchers.IO).launch {
+            val selectedLanguage = LocaleHelper.getSelectedLanguage(this@NameActivity)
+                LocaleHelper.setLocale(this@NameActivity, selectedLanguage)
+//            withContext(Dispatchers.Main){
+//            }
+//        }
+
 
 //        this.recreate()
 //        supportActionBar?.hide();
@@ -90,6 +97,7 @@ class NameActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.english -> {
+//                Resources.getSystem().flushLayoutCache()
                 // Change the language to English
                 // Save the selected language to SharedPreferences
                 LocaleHelper.persistSelectedLanguage(this, "en")
@@ -97,19 +105,33 @@ class NameActivity : AppCompatActivity() {
                 LocaleHelper.updateResourcesLegacy(this, "en")
 
                 LocaleHelper.setLocale(this, "en")
+
 //                Toast.makeText(applicationContext, "English", Toast.LENGTH_SHORT).show()
                 // Recreate the activity to apply the new locale
-                this.recreate()
+//                finish()
+
+                // Relaunch the app by starting the main activity
+                val intent = Intent(this, SignupActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+//                recreate()
                 return true
             }
             R.id.gujarati -> {
+//                Resources.getSystem().flushLayoutCache()
                 LocaleHelper.updateResourcesLegacy(this, "gu")
                 // Save the selected language to SharedPreferences
                 LocaleHelper.persistSelectedLanguage(this, "gu")
                 // Change the language to Hindi
                 LocaleHelper.setLocale(this, "gu")
                 // Recreate the activity to apply the new locale
-                this.recreate()
+//                finish()
+
+                // Relaunch the app by starting the main activity
+                val intent = Intent(this, SignupActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+//                recreate()
 //                Toast.makeText(applicationContext, "Gujarati", Toast.LENGTH_SHORT).show()
                 return true
             }

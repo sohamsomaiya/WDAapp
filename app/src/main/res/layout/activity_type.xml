@@ -61,14 +61,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Individual"
+            android:text="@string/individual"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:drawableStart="@drawable/person"
             android:drawablePadding="30dp"
             android:layout_gravity="center"
             android:gravity="center"
-            />
+            app:drawableStartCompat="@drawable/person" />
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
@@ -89,15 +88,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Organization"
+            android:text="@string/organization"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:fontFamily="@font/inter"
-            android:drawableStart="@drawable/organization"
             android:drawablePadding="15dp"
             android:gravity="center"
             android:layout_gravity="center"
-            />
+            app:drawableStartCompat="@drawable/organization" />
     </com.google.android.material.card.MaterialCardView>
 
     <Button

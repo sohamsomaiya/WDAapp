@@ -37,8 +37,8 @@ class QueryActivity : AppCompatActivity() {
         UserQueryDescriptionTxt = findViewById(R.id.UserQueryDescriptionTxt)
         QuerySubmitBtn = findViewById(R.id.QuerySubmitBtn)
         ViewQueryGridView = findViewById(R.id.ViewQueryGridView)
-        var ID = ""
-        supportActionBar?.title = "Query"
+        var ID=""
+        supportActionBar?.title="Query"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val prefrenceQuery = getSharedPreferences("wda", MODE_PRIVATE)
         val userid = prefrenceQuery.getString("userId", "")
@@ -47,7 +47,7 @@ class QueryActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             UserTemplates = User.getWebsiteDetails(userid.toString())
 
-            ViewQueries = User.getQueries(contact.toString())
+            ViewQueries=User.getQueries(contact.toString())
 
             if (UserTemplates.isEmpty()) {
   //              Toast.makeText(this@QueryActivity,"No Data Found", Toast.LENGTH_SHORT).show()
@@ -109,6 +109,9 @@ class QueryActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+    }
+}
         }
     }
 }
