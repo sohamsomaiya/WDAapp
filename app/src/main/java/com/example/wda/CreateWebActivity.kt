@@ -92,28 +92,31 @@ class CreateWebActivity : AppCompatActivity() {
         EnterDetailsSubmitbtn.setOnClickListener {
             Toast.makeText(this@CreateWebActivity, EnterDetailsTxtInput.text.toString(), Toast.LENGTH_SHORT).show()
 
-            CoroutineScope(Dispatchers.IO).launch {
-                val message= User.validateDomain(EnterDetailsTxtInput.text.toString())
-                withContext(Dispatchers.Main){
-                    if (message.getBoolean("success") && EnterDetailsTxtInput.text.toString()=="" && DOIInput.text.toString()=="" && COIInput.text.toString()=="" && TANInput.text.toString()==""){
-                        Toast.makeText(this@CreateWebActivity, message.getString("message"), Toast.LENGTH_SHORT).show()
-                    }
-                    else{
-                        val CreateWebPrefrense = getSharedPreferences("wda", MODE_PRIVATE)
-                        val editor = CreateWebPrefrense.edit()
-                        editor.putString("UName", EnterDetailsTxtInput.text.toString())
-                        editor.putString("UDOI",DOIInput.text.toString())
-                        editor.putString("UCOI",COIInput.text.toString())
-                        editor.putString("UTAN",TANInput.text.toString())
-                        editor.apply()
+            if( EnterDetailsTxtInput.text.toString()==""){
+                Toast.makeText(this@CreateWebActivity, "Please Enter Website Name", Toast.LENGTH_SHORT).show()
+            }else{
+                CoroutineScope(Dispatchers.IO).launch {
+                    val message= User.validateDomain(EnterDetailsTxtInput.text.toString())
+                    withContext(Dispatchers.Main){
+                        if (message.getBoolean("success")){
+                            Toast.makeText(this@CreateWebActivity, message.getString("message"), Toast.LENGTH_SHORT).show()
+                        }
+                        else{
+                            val CreateWebPrefrense = getSharedPreferences("wda", MODE_PRIVATE)
+                            val editor = CreateWebPrefrense.edit()
+                            editor.putString("UName", EnterDetailsTxtInput.text.toString())
+                            editor.putString("UDOI",DOIInput.text.toString())
+                            editor.putString("UCOI",COIInput.text.toString())
+                            editor.putString("UTAN",TANInput.text.toString())
+                            editor.apply()
 
-                        val intent=Intent(this@CreateWebActivity,TemplateSelectionActivity::class.java)
-                        startActivity(intent)
-                       // finish()
+                            val intent=Intent(this@CreateWebActivity,TemplateSelectionActivity::class.java)
+                            startActivity(intent)
+                            // finish()
+                        }
                     }
                 }
             }
-
         }
     }
 }

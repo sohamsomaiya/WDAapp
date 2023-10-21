@@ -18,6 +18,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.example.wda.ModalBottomSheet.Companion.contentEditableEnabled
 import com.example.wda.ModalBottomSheet.Companion.fontFamily
 import com.example.wda.ModalBottomSheet.Companion.primaryColor
 import com.example.wda.ModalBottomSheet.Companion.primaryVariantColor
@@ -43,6 +44,7 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
          var primaryVariantColor :String? = null
          var secondaryColor :String? = null
          var secondaryVariantColor :String? = null
+         var contentEditableEnabled = true
          var textColor :String? = null
             lateinit var web: WebView
 
@@ -337,10 +339,15 @@ class EditWebActivity : AppCompatActivity() {
 //        secondaryColor  = R.color.RoseQuartz2.toString()
 //        secondaryVariantColor = R.color.Pauce.toString()
 //        textColor=R.color.black.toString()
+
+//        contentEditableEnabled = !contentEditableEnabled
+//        toggleContentEditable(contentEditableEnabled)
+
         val sp = getSharedPreferences("wda", MODE_PRIVATE)
         val Tpath = sp.getString("TemplatePath","")
         val baseUrl = "http://${ipaddress}$Tpath"
         var DomainName:String?
+
         val uri = Uri.parse(baseUrl)
             .buildUpon()
             .appendQueryParameter("ipaddress", ipaddress)
@@ -373,14 +380,13 @@ class EditWebActivity : AppCompatActivity() {
         val UWebType = EditWebPrefrense.getString("WebsiteType", "")
         val UTAN = EditWebPrefrense.getString("UTAN", "")
         val WebsiteName=EditWebPrefrense.getString("WebsiteName","")
+//        Save Button
         SaveBtn.setOnClickListener {
             web.evaluateJavascript(
                 "(function() { return document.documentElement.outerHTML; })();"
             ) { content ->
                 val task: String = intent.getStringExtra("Task").toString()
                 if (task == "Register") {
-
-
                     CoroutineScope(Dispatchers.IO).launch {
                         withContext(Dispatchers.Main) {
                             val cleanedContent =
@@ -423,6 +429,9 @@ class EditWebActivity : AppCompatActivity() {
                         }
                     }
                 } else {
+                    contentEditableEnabled = !contentEditableEnabled
+                    toggleContentEditable(contentEditableEnabled)
+
                     CoroutineScope(Dispatchers.IO).launch {
                         withContext(Dispatchers.Main) {
                             val cleanedContent =
@@ -449,7 +458,8 @@ class EditWebActivity : AppCompatActivity() {
                 }
 
             }
-
+//            contentEditableEnabled = !contentEditableEnabled
+//            disableContentEditable()
         }
 
             // Button click listener to show the bottom sheet dialog
@@ -463,6 +473,22 @@ class EditWebActivity : AppCompatActivity() {
             }
         }
         private inner class MyWebViewClient : WebViewClient()
+        @SuppressLint("SetJavaScriptEnabled")
+        private fun toggleContentEditable(enabled: Boolean) {
+            // JavaScript function to toggle contenteditable elements
+            val jsCode = """
+                function toggleContentEditable(enabled) {
+                    var contentEditableElements = document.querySelectorAll('[contenteditable]');
+                    contentEditableElements.forEach(function(element) {
+                        element.contentEditable = enabled ? 'true' : 'false';
+                    });
+                }
+                toggleContentEditable($contentEditableEnabled);
+            """.trimIndent()
+            Log.i("Project Errro","hii")
+            // Execute the JavaScript code in the WebView
+            web.evaluateJavascript(jsCode, null)
+        }
 
         @JavascriptInterface
         fun showFileChooser(id: String) {

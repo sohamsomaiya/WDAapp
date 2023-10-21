@@ -113,7 +113,7 @@
                 android:id="@+id/closeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="close"
+                android:text="@string/done"
                 android:layout_gravity="center"/>
         </LinearLayout>
     <!-- Add other views or content as needed -->

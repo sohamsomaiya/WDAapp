@@ -124,7 +124,7 @@
                         android:layout_marginTop="40dp"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/inter"
-                        android:text="Name"
+                        android:text="@string/name"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         />
                 </LinearLayout>
@@ -134,7 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="55dp"
                     android:fontFamily="@font/inter"
-                    android:text="User Name"
+                    android:text="@string/user_name"
                     android:textColor="@color/gray"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
 
@@ -170,7 +170,7 @@
                         android:layout_marginTop="40dp"
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/inter"
-                        android:text="Gender"
+                        android:text="@string/gender"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
 
                         />
@@ -181,7 +181,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="55dp"
                     android:fontFamily="@font/inter"
-                    android:text="Gender"
+                    android:text="@string/gender"
                     android:textColor="@color/gray"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
 
@@ -217,7 +217,7 @@
                         android:layout_marginTop="40dp"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/inter"
-                        android:text="DOB"
+                        android:text="@string/dob"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
 
                         />
@@ -264,7 +264,7 @@
                         android:layout_marginTop="40dp"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/inter"
-                        android:text="Phone Number"
+                        android:text="@string/phone_number"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
 
                         />
@@ -311,7 +311,7 @@
                         android:layout_marginTop="40dp"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/inter"
-                        android:text="Address"
+                        android:text="@string/address"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
 
                         />
@@ -400,7 +400,7 @@
                         android:layout_marginTop="40dp"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/inter"
-                        android:text="Gender"
+                        android:text="@string/gender"
 
                         />
                 </LinearLayout>
@@ -415,21 +415,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
-                        android:text="Male"
+                        android:text="@string/male"
                         />
                     <com.google.android.material.radiobutton.MaterialRadioButton
                         android:id="@+id/GenderFemaleRbtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:text="Female"
+                        android:text="@string/female"
                         />
                     <com.google.android.material.radiobutton.MaterialRadioButton
                         android:id="@+id/GenderOtherRbtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:text="Other"
+                        android:text="@string/other"
                         />
                 </RadioGroup>
                 <com.google.android.material.divider.MaterialDivider
@@ -443,7 +443,7 @@
                     />
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ProfileEditDOBTxtLayout"
-                    android:hint="Enter DOB"
+                    android:hint="@string/enter_dob"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -509,7 +509,7 @@
                     />
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ProfileEditAddressTxtLayout"
-                    android:hint="Enter Address"
+                    android:hint="@string/enter_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -538,7 +538,7 @@
                     />
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ProfileEditCityTxtLayout"
-                    android:hint="Enter City"
+                    android:hint="@string/enter_city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -568,7 +568,7 @@
                     />
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ProfileEditStateTxtLayout"
-                    android:hint="Enter State"
+                    android:hint="@string/enter_state"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -598,7 +598,7 @@
                     />
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ProfileEditPincodeTxtLayout"
-                    android:hint="Enter Pincode"
+                    android:hint="@string/enter_pincode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -630,7 +630,7 @@
                         android:id="@+id/EditProfileCancleBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cancle"
+                        android:text="@string/cancle"
                         android:background="@drawable/rectanglesvgbtn"
                         android:paddingBottom="10sp"
                         />
@@ -638,7 +638,7 @@
                         android:id="@+id/EditProfileSaveBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Save"
+                        android:text="@string/save"
                         android:background="@drawable/rectanglesvgbtn"
                         android:paddingBottom="10sp"
                         />

@@ -107,13 +107,13 @@ class SelectUsersTempalteToEditAdapter (private val activity: Activity, private 
         }
 
         SubmitBtn.setOnClickListener {
-            if (viewHolder.WebCard.isChecked)
-            {
+//            if (viewHolder.WebCard.isChecked)
+//            {
                 val intent= Intent(activity, EditWebActivity::class.java)
                 activity.startActivity(intent)
-            }else{
-                Toast.makeText(context, "Please Select a Website to edit", Toast.LENGTH_SHORT).show()
-            }
+//            }else{
+//                Toast.makeText(context, "Please Select a Website to edit", Toast.LENGTH_SHORT).show()
+//            }
         }
         return view!!
     }

@@ -58,53 +58,60 @@ class QueryActivity : AppCompatActivity() {
             } else {
                 UserTemplates.also {
                     var UserTempadapter =
+            withContext(Dispatchers.Main) {
+                if (UserTemplates.isEmpty()) {
+                    Toast.makeText(this@QueryActivity, "No Website Found", Toast.LENGTH_SHORT)
+                        .show()
+                    TemplateSpinnerLayout.visibility = View.GONE
+
+                } else {
+                    UserTemplates.also {
+                        var UserTempadapter =
                             DropdownWebNameAdapter(this@QueryActivity, UserTemplates)
                     withContext(Dispatchers.Main){
                         TemplateSpinner.setAdapter(UserTempadapter)
                         TemplateSpinner.setOnItemClickListener { parent, view, position, id ->
-                                 ID= UserTempadapter.getItem(position)!!.WebsiteId.toString()
+                            ID = UserTempadapter.getItem(position)!!.WebsiteId.toString()
                         }
                     }
                 }
             }
 
-            if (ViewQueries.isEmpty()) {
-                withContext(Dispatchers.Main){
-                    Toast.makeText(this@QueryActivity, "No Website Found", Toast.LENGTH_SHORT).show()
-                }
-            }
-            else {
-                withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
+                if (ViewQueries.isEmpty()) {
+                    Toast.makeText(this@QueryActivity, "No Query Found", Toast.LENGTH_SHORT).show()
+                } else {
                     ViewQueries.also {
-                            var ViewQueryAdapter =
-                                ViewQueryAdapter(this@QueryActivity, ViewQueries)
-                            ViewQueryGridView.setAdapter(ViewQueryAdapter)
+                        val ViewQueryAdapter =
+                            ViewQueryAdapter(this@QueryActivity, ViewQueries)
+                        ViewQueryGridView.setAdapter(ViewQueryAdapter)
                     }
                 }
             }
-        }
 
-
-        QuerySubmitBtn.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                val UserQuery = User.raiseQuery(
-                    UserQueryDescriptionTxt.text.toString(),
-                    ID,
-                    userid.toString()
-                )
-                withContext(Dispatchers.Main) {
-                    if (UserQuery.getBoolean("success")) {
-                        this@QueryActivity.recreate()
-                    } else {
-                        Toast.makeText(
-                            this@QueryActivity,
-                            UserQuery.getString("message"),
-                            Toast.LENGTH_SHORT
-                        ).show()
+            QuerySubmitBtn.setOnClickListener {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val UserQuery = User.raiseQuery(
+                        UserQueryDescriptionTxt.text.toString(),
+                        ID,
+                        userid.toString()
+                    )
+                    withContext(Dispatchers.Main) {
+                        if (UserQuery.getBoolean("success")) {
+                            this@QueryActivity.recreate()
+                        } else {
+                            Toast.makeText(
+                                this@QueryActivity,
+                                UserQuery.getString("message"),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
             }
         }
     }
-
+}
+        }
+    }
 }

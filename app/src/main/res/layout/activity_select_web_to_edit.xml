@@ -40,7 +40,7 @@
         android:id="@+id/SelectToEditSubmit"
         android:layout_width="0sp"
         android:layout_height="0sp"
-        android:text="Continue"
+        android:text="@string/Continue"
         android:textAllCaps="false"
         app:layout_constraintWidth_percent="0.9"
         app:layout_constraintHeight_percent="0.07"

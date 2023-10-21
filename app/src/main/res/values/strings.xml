@@ -43,6 +43,34 @@
     <string name="corporate_identification_number">Corporate Identification Number</string>
     <string name="tax_deduction_account_number">TAX Deduction Account Number</string>
     <string name="enter_your_details_to_get_a_npersonalize_experience" tools:ignore="MissingTranslation">Enter Your Details To Get A \nPersonalize Experience.</string>
+    <string name="enter_your_website_name">Enter Your Website Name</string>
+    <string name="edit_font">Edit Font</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit_color">Edit Color</string>
+    <string name="save">Save</string>
+    <string name="didn_t_register_yet_signup">Didn\'t Register Yet? /Signup.</string>
+    <string name="name">Name</string>
+    <string name="user_name">User Name</string>
+    <string name="gender">Gender</string>
+    <string name="dob">DOB</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="address">Address</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="other">Other</string>
+    <string name="enter_dob">Enter DOB</string>
+    <string name="enter_address">Enter Address</string>
+    <string name="enter_city">Enter City</string>
+    <string name="enter_state">Enter State</string>
+    <string name="enter_pincode">Enter Pincode</string>
+    <string name="cancle">Cancle</string>
+    <string name="choose_website">Choose Website</string>
+    <string name="enter_your_query">Enter your Query</string>
+    <string name="submit">Submit</string>
+    <string name="individual">Individual</string>
+    <string name="organization">Organization</string>
+    <string name="done">Done</string>
+    <string name="template_name">template name</string>
 
     <string-array name="Query">
         <item>text 1</item>

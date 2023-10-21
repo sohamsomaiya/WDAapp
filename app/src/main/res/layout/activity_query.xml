@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:inputType="none"
-                    android:text="Choose Website"
+                    android:text="@string/choose_website"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -51,7 +51,7 @@
                         android:id="@+id/UserQueryDescriptionTxt"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Enter your Query"
+                        android:hint="@string/enter_your_query"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
                 <Button
@@ -62,7 +62,7 @@
                     android:layout_gravity="center"
                     android:paddingBottom="10dp"
                     android:background="@drawable/rectanglesvgbtn"
-                    android:text="Submit"
+                    android:text="@string/submit"
                     />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

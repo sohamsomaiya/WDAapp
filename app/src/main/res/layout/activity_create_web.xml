@@ -45,7 +45,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/EnterDetailstxtLayout"
-        android:hint="Enter Your Website Name"
+        android:hint="@string/enter_your_website_name"
         android:layout_width="0sp"
         app:layout_constraintWidth_percent="0.8"
         android:layout_height="wrap_content"
